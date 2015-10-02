@@ -1,0 +1,66 @@
+package edu.rudcs.gridworld.test;
+
+import edu.rudcs.gridworld.agent.AStarAgent;
+import edu.rudcs.gridworld.agent.Agent;
+import edu.rudcs.gridworld.agent.BfsAgent;
+import edu.rudcs.gridworld.agent.DStarAgent;
+import edu.rudcs.gridworld.agent.DStarLiteAgent;
+import edu.rudcs.gridworld.agent.LpaStarAgent;
+import edu.rudcs.gridworld.map.SearchMap;
+
+public class SearchMapRunner {
+
+    public static void main(String[] args) {
+        SearchMapRunner runner = new SearchMapRunner();
+        // runner.runBfs();
+//         runner.runAStar();
+//        runner.runDStar();
+        // runner.runLpaStar();
+         runner.runDStarLiteAgent();
+    }
+
+    public void runBfs() {
+        SearchMap map = new SearchMap();
+        map.loadMap("map1.txt");
+        Agent agent = new BfsAgent();
+        map.loadAgent(agent);
+        map.loadWorld();
+        map.show();
+    }
+
+    public void runAStar() {
+        SearchMap map = new SearchMap();
+        map.loadMap("map4.txt");
+        Agent agent = new AStarAgent(map.getGoal().get(0));
+        map.loadAgent(agent);
+        map.loadWorld();
+        map.show();
+    }
+
+    public void runDStar() {
+        SearchMap map = new SearchMap();
+        map.loadMap("map4.txt");
+        Agent agent = new DStarAgent(map.getGoal().get(0));
+        map.loadAgent(agent);
+        map.loadWorld();
+        map.show();
+    }
+
+    public void runLpaStar() {
+        SearchMap map = new SearchMap();
+        map.loadMap("map3.txt");
+        Agent agent = new LpaStarAgent(map.getGoal().get(0));
+        map.loadAgent(agent);
+        map.loadWorld();
+        map.show();
+    }
+
+    public void runDStarLiteAgent() {
+        SearchMap map = new SearchMap();
+        map.loadMap("map4.txt");
+        Agent agent = new DStarLiteAgent(map.getGoal().get(0));
+        map.loadAgent(agent);
+        map.loadWorld();
+        map.show();
+    }
+}

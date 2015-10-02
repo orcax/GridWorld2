@@ -1,1 +1,1 @@
-# GridWorld2 for path finding
+GridWorld2 Project for Path Finding Algorithms
