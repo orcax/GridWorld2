@@ -1,2 +1,15 @@
 /build/
 /bin/
+/log/
+/.gradle/
+
+*.classpath
+*.project
+*.settings
+*.DS_Store
+
+*.class
+
+*.jar
+*.war
+*.ear

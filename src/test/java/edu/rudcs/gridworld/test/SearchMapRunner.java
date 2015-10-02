@@ -13,15 +13,15 @@ public class SearchMapRunner {
     public static void main(String[] args) {
         SearchMapRunner runner = new SearchMapRunner();
         // runner.runBfs();
-//         runner.runAStar();
-//        runner.runDStar();
+        // runner.runAStar();
+        // runner.runDStar();
         // runner.runLpaStar();
-         runner.runDStarLiteAgent();
+        runner.runDStarLiteAgent();
     }
 
     public void runBfs() {
         SearchMap map = new SearchMap();
-        map.loadMap("map1.txt");
+        map.loadMap("maps/map1.txt");
         Agent agent = new BfsAgent();
         map.loadAgent(agent);
         map.loadWorld();
@@ -30,7 +30,7 @@ public class SearchMapRunner {
 
     public void runAStar() {
         SearchMap map = new SearchMap();
-        map.loadMap("map4.txt");
+        map.loadMap("maps/map4.txt");
         Agent agent = new AStarAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
@@ -39,7 +39,7 @@ public class SearchMapRunner {
 
     public void runDStar() {
         SearchMap map = new SearchMap();
-        map.loadMap("map4.txt");
+        map.loadMap("maps/map4.txt");
         Agent agent = new DStarAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
@@ -48,7 +48,7 @@ public class SearchMapRunner {
 
     public void runLpaStar() {
         SearchMap map = new SearchMap();
-        map.loadMap("map3.txt");
+        map.loadMap("maps/map3.txt");
         Agent agent = new LpaStarAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
@@ -57,7 +57,7 @@ public class SearchMapRunner {
 
     public void runDStarLiteAgent() {
         SearchMap map = new SearchMap();
-        map.loadMap("map4.txt");
+        map.loadMap("maps/map4.txt");
         Agent agent = new DStarLiteAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
