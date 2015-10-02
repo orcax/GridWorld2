@@ -1,1 +1,1 @@
-# GridWorld2
+# GridWorld2 for path finding
