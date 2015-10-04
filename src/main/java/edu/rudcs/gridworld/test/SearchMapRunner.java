@@ -6,6 +6,9 @@ import edu.rudcs.gridworld.agent.BfsAgent;
 import edu.rudcs.gridworld.agent.DStarAgent;
 import edu.rudcs.gridworld.agent.DStarLiteAgent;
 import edu.rudcs.gridworld.agent.LpaStarAgent;
+import edu.rudcs.gridworld.agent.RepeatAstarAgent;
+import edu.rudcs.gridworld.agent.RepeatForwardAstarAgent;
+import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 import edu.rudcs.gridworld.map.SearchMap;
 
 public class SearchMapRunner {
@@ -13,10 +16,11 @@ public class SearchMapRunner {
     public static void main(String[] args) {
         SearchMapRunner runner = new SearchMapRunner();
         // runner.runBfs();
-        // runner.runAStar();
+        //runner.runAStar();
         // runner.runDStar();
         // runner.runLpaStar();
-        runner.runDStarLiteAgent();
+        //runner.runDStarLiteAgent();
+        runner.runRepeatAstarAgent();
     }
 
     public void runBfs() {
@@ -62,5 +66,15 @@ public class SearchMapRunner {
         map.loadAgent(agent);
         map.loadWorld();
         map.show();
+    }
+    
+    public void runRepeatAstarAgent(){
+    	RepeatAstarSearchMap map = new RepeatAstarSearchMap();
+    	 map.loadMap("maps/map4.txt");
+         Agent agent = new RepeatForwardAstarAgent(map.getStarts().get(0),
+        		 map.getGoals().get(0),map.getCells(),map.getRows(),map.getColumn());
+         map.loadAgent(agent);
+         map.loadWorld();
+         map.show();
     }
 }

@@ -18,11 +18,11 @@ import edu.rudcs.gridworld.agent.Agent;
 
 public class SearchMap {
 
-    private int rows;
-    private int cols;
-    private Agent agent;
-    private Map<ActorType, List<Location>> objects;
-    private ActorWorld world;
+    protected int rows;
+    protected int cols;
+    protected Agent agent;
+    protected Map<ActorType, List<Location>> objects;
+    protected ActorWorld world;
 
     public SearchMap() {
         rows = 0;

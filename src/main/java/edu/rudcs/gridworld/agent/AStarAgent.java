@@ -167,4 +167,5 @@ public class AStarAgent extends Agent {
             node.addChild(new TreeNode<PathCost>(childPc));
         }
     }
+    
 }
