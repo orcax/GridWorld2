@@ -13,3 +13,6 @@
 *.jar
 *.war
 *.ear
+
+*.aux
+*.log
