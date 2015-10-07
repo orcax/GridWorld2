@@ -19,7 +19,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     	
     	counter++;
     	
-    	
+    
     	cost.put(current, 0);
     	search.put(current, counter);
     	
@@ -29,19 +29,39 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     	
     	
     	open.clear();
+    	
+    	/////
+    	close.clear();
+    	/////
+    	
     	current.setExpectValue(manhattanDistance(current,goal)+cost.get(current));
     	open.add(current);
     	
     	tree.put(current, new TreeNode<State>(current));
     	while(!open.isEmpty() && cost.get(goal) > open.peek().getExpectValue()){
     		State s = open.poll();
-    		System.out.println("mahatton of s:"+s.getExpectValue());
-    		System.out.println("cost of goal:" + cost.get(goal));
-    		TreeNode<State> curNode = tree.get(s);
+    		//System.out.println("mahatton of s:"+s.getExpectValue());
+    		//System.out.println("cost of goal:" + cost.get(goal));
+    		
+    		
+    		
+    		TreeNode<State> curNode = tree.get(s);;
+    		
+    		/////
+    		if(close.contains(s)){
+				continue;
+			}	
+			close.add(s);
+			expandCounter++;
+			showExplore(s);
+			/////
+    		
     		List<State> successors = getSuccesors(s);
+    		
     		for(State succ : successors){
-    			showExplore(succ);
-    				
+    			
+    			
+    			exploreCounter++;
     			
     			if(!search.containsKey(succ) || search.get(succ) < counter ){
     				cost.put(succ, Integer.MAX_VALUE);
@@ -52,9 +72,11 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     			
     			if(cost.get(succ) > cost.get(s) + PACECOST){
     				cost.put(succ,cost.get(s) + PACECOST);
-    				TreeNode<State> child = new TreeNode<State>(succ);
-    				curNode.addChild(child);
-    				tree.put(succ, child);
+    				
+	    			TreeNode<State> child = new TreeNode<State>(succ);
+	    			curNode.addChild(child);
+	    			tree.put(succ, child);
+    				
     				succ.setExpectValue(manhattanDistance(succ,goal)+ cost.get(succ));
     				if(open.contains(succ)){
     					open.remove(succ);

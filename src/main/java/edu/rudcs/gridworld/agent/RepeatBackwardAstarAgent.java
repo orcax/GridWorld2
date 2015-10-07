@@ -31,6 +31,11 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     	search.put(goal, counter);
     	
     	open.clear();
+    	
+    	/////
+    	close.clear();
+    	/////
+    	
     	goal.setExpectValue(manhattanDistance(goal,current)+cost.get(goal));
     	open.add(goal);
     	
@@ -41,10 +46,23 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     		System.out.println("cost of current:" + cost.get(current));
     		TreeNode<State> curNode = tree.get(s);
     		List<State> successors = getSuccesors(s);
+    		
+    		////
+    		if(close.contains(s)){
+				continue;
+			}	
+			close.add(s);
+			expandCounter++;
+			showExplore(s);
+			////
+			
+			
+    		
     		for(State succ : successors){
+    			/////
+    			exploreCounter++;
+    			/////
     			
-    			showExplore(succ);
-
     			if(!search.containsKey(succ) || search.get(succ) < counter ){
     				cost.put(succ, Integer.MAX_VALUE);
     		    	search.put(succ, counter);

@@ -44,6 +44,9 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     	
     	
     	open.clear();
+    	/////
+    	close.clear();
+    	/////
     	current.setExpectValue(calcDist(current)+cost.get(current));
     	open.add(current);
     
@@ -51,17 +54,27 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     	tree.put(current, new TreeNode<State>(current));
     	while(!open.isEmpty() && cost.get(goal) > open.peek().getExpectValue()){
     		State s = open.poll();
-    		showExplore(s);
+    		
     		expands.put(s, 0);
     		
     		System.out.println("mahatton of s:"+s.getExpectValue());
     		System.out.println("cost of goal:" + cost.get(goal));
     		TreeNode<State> curNode = tree.get(s);
     		List<State> successors = getSuccesors(s);
+    		
+    		//////
+    		if(close.contains(s)){
+				continue;
+			}	
+			close.add(s);
+			showExplore(s);
+			expandCounter++;
+    		//////
+    		
     		for(State succ : successors){
-    			
-    				
-    			
+    			////
+    			exploreCounter++;
+    			////
     			if(!search.containsKey(succ) || search.get(succ) < counter ){
     				cost.put(succ, Integer.MAX_VALUE);
     		    	search.put(succ, counter);
@@ -93,23 +106,16 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     	
     	
     	showPath();
+    	updateEstimate();
     	
     	return true;
     }
 
-    protected void showPath(){
-    	Grid<Actor> grid = getGrid();
-    	TreeNode<State> node = tree.get(goal);
-    	int i = 0;
-    	while(node.getParent() != null){
-    		State s = node.getData();
-    		grid.putColor(new Location(s.getRow(),s.getCol()), Agent.PATH_COLOR);
-    		path.push(s);
-    		if(expands.containsKey(s)){
-    			estimate.put(s, i);
-    		}
-    		node = node.getParent();
-    		i++;
+    
+    
+    protected void updateEstimate(){
+    	for(State s : expands.keySet()){
+    		newEstimates.put(s,cost.get(goal) - cost.get(s) );
     	}
     }
     

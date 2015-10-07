@@ -74,7 +74,7 @@ public class SearchMapRunner {
     	RepeatAstarSearchMap map = new RepeatAstarSearchMap();
     	 map.loadMap("maps/map4.txt");
         
-         Agent agent = getRepeatAgent("Adaptive",map);
+         Agent agent = getRepeatAgent("adaptive",map);
          map.loadAgent(agent);
          map.loadWorld();
          map.show();
@@ -89,7 +89,7 @@ public class SearchMapRunner {
     	case "backward":return new RepeatBackwardAstarAgent(map.getStarts().get(0),
     	        map.getGoals().get(0),map.getCells(),map.getRows(),map.getColumn());
     	
-    	case "Adaptive":return new AdaptiveAstarAgent(map.getStarts().get(0),
+    	case "adaptive":return new AdaptiveAstarAgent(map.getStarts().get(0),
     			map.getGoals().get(0),map.getCells(),map.getRows(),map.getColumn());
     	
     	}

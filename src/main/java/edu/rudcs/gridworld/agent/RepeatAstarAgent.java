@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import java.util.concurrent.PriorityBlockingQueue;
 
 import edu.rudcs.gridworld.map.Shadow;
+import edu.rudcs.gridworld.util.BinaryHeap;
 import edu.rudcs.gridworld.util.State;
 import edu.rudcs.gridworld.util.TreeNode;
 import info.gridworld.actor.Actor;
@@ -31,7 +32,9 @@ public class RepeatAstarAgent extends Agent {
     protected State goal;
     protected boolean bStart;
     protected int counter;
-    protected Queue<State> open;
+    //protected Queue<State> open;
+    protected BinaryHeap<State> open;
+	protected Set<State> close;
 
     protected int rows,cols;
     
@@ -50,6 +53,10 @@ public class RepeatAstarAgent extends Agent {
     
     Grid<Actor> grid;
     
+    protected int expandCounter;
+    protected int exploreCounter;
+    protected int stepCounter;
+    
     public RepeatAstarAgent(State start, State goal, byte[][] cells, int rows , int cols){
     	
     	states = new State[rows][cols];
@@ -65,6 +72,10 @@ public class RepeatAstarAgent extends Agent {
     	tree = new HashMap<State,TreeNode<State>>();
     	path = new Stack<State>();
     	counter = 0;
+    	expandCounter = 0;
+    	exploreCounter = 0;
+    	stepCounter = 0;
+    	
     	
     	for(int i = 0; i < rows; i++){
     		for(int j = 0; j < cols; j++){
@@ -83,7 +94,11 @@ public class RepeatAstarAgent extends Agent {
     		//System.out.println("");
     	}
     	
+    	
+    	
     	bStart = false;
+    	
+    	/*
     	
     	open = new PriorityBlockingQueue<State>(100,
                 new Comparator<State>() {
@@ -92,6 +107,15 @@ public class RepeatAstarAgent extends Agent {
                 return s1.getExpectValue() - s2.getExpectValue();
             }});
     
+    	*/
+    	open = new BinaryHeap<State>(new Comparator<State>() { 
+            public int compare(State s1, State s2) {
+                return s2.getExpectValue() - s1.getExpectValue();
+            }});
+    	
+    	close = new HashSet<State>();
+    	
+    	
     	grid = getGrid();
     	
     }
@@ -175,7 +199,9 @@ public class RepeatAstarAgent extends Agent {
     }
     
     protected void success(){
-    	System.out.println("success");
+    	System.out.println("success,total expand node is " + expandCounter
+    			+", total explore node is " + exploreCounter
+    			+", total step is " + stepCounter);
     }
     
     protected void move(){
@@ -197,6 +223,7 @@ public class RepeatAstarAgent extends Agent {
         Shadow shadow = new Shadow(Location.NORTH);
         shadow.putSelfInGrid(grid, oldLoc);
         grid.putColor(oldLoc, Color.green);
+        stepCounter++;
     }
 
     
@@ -230,6 +257,21 @@ public class RepeatAstarAgent extends Agent {
     		succesors.add(states[row-1][col]);
     	}
         return succesors;
+    }
+    
+    protected List<State> getSuccesorFromTree(State s){
+    	List<State> succesors = new ArrayList<State>();
+    	int row = s.getRow();
+    	int col = s.getCol();
+    	TreeNode<State> node = tree.get(s);
+    	for(TreeNode<State> succNode : node.getChildren()){
+    		State succ = succNode.getData();
+    		if(succ.getType() != 1){
+    			succesors.add(succ);
+    		}
+    	}
+    	return succesors;
+    	
     }
     
     protected boolean computePath(){
@@ -280,7 +322,7 @@ public class RepeatAstarAgent extends Agent {
 	    	if(next == null){
 	    		return false;
 	    	}
-	    	System.out.println(next.getType());
+	    	
 	    	if(next.getType() != 1){
 	    		return true;
 	    	}

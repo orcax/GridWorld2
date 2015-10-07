@@ -1,5 +1,7 @@
 package edu.rudcs.gridworld.util;
 
+import java.util.Set;
+
 public class State {
 	
 	private int row;
@@ -8,7 +10,9 @@ public class State {
 	private byte type;
 	private int expectCost;
 	
-    public State(int row, int col, byte type){
+
+	
+    public State(int row, int col,byte type){
     	this.row = row;
     	this.col = col;
     	this.type = type;
