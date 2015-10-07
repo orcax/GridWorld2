@@ -33,7 +33,7 @@ public class MapGenerator {
 
     private String getMapName() {
         StringBuffer sb = new StringBuffer(MAP_PREFIX);
-        for (int i = count.toString().length(); i <= 4; i++) {
+        for (int i = count.toString().length(); i < 4; i++) {
             sb.append("0");
         }
         sb.append(++count);
