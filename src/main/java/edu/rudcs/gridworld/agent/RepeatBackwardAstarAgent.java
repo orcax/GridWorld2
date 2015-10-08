@@ -20,7 +20,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
 	
 	
 	protected boolean computePath(){
-		System.out.println("repeat backward");
+		//System.out.println("repeat backward");
 		
         counter++;
        	
@@ -42,8 +42,8 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     	tree.put(goal, new TreeNode<State>(goal));
     	while(!open.isEmpty() && cost.get(current) > open.peek().getExpectValue()){
     		State s = open.poll();
-    		System.out.println("mahatton of s:"+s.getExpectValue());
-    		System.out.println("cost of current:" + cost.get(current));
+    		//System.out.println("mahatton of s:"+s.getExpectValue());
+    		//System.out.println("cost of current:" + cost.get(current));
     		TreeNode<State> curNode = tree.get(s);
     		List<State> successors = getSuccesors(s);
     		

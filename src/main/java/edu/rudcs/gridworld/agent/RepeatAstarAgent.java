@@ -199,6 +199,7 @@ public class RepeatAstarAgent extends Agent {
     }
     
     protected void success(){
+    	end = true;
     	System.out.println("success,total expand node is " + expandCounter
     			+", total explore node is " + exploreCounter
     			+", total step is " + stepCounter);

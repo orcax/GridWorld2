@@ -15,7 +15,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
 	}
 	
 	protected boolean computePath(){
-    	System.out.println("repeat forward");
+    	//System.out.println("repeat forward");
     	
     	counter++;
     	

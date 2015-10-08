@@ -27,7 +27,7 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
 	
 	
 	protected boolean computePath(){
-    	System.out.println("repeat forward");
+    	//System.out.println("repeat forward");
     	
     	counter++;
     	
@@ -57,8 +57,8 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     		
     		expands.put(s, 0);
     		
-    		System.out.println("mahatton of s:"+s.getExpectValue());
-    		System.out.println("cost of goal:" + cost.get(goal));
+    		//System.out.println("mahatton of s:"+s.getExpectValue());
+    		//System.out.println("cost of goal:" + cost.get(goal));
     		TreeNode<State> curNode = tree.get(s);
     		List<State> successors = getSuccesors(s);
     		
