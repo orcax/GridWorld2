@@ -47,7 +47,7 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     	/////
     	close.clear();
     	/////
-    	current.setExpectValue(calcDist(current)+cost.get(current));
+    	current.setExpectValue(calcDist(current),cost.get(current));
     	open.add(current);
     
     	
@@ -87,7 +87,7 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     				TreeNode<State> child = new TreeNode<State>(succ);
     				curNode.addChild(child);
     				tree.put(succ, child);
-    				succ.setExpectValue(calcDist(succ)+ cost.get(succ));
+    				succ.setExpectValue(calcDist(succ),cost.get(succ));
     				if(open.contains(succ)){
     					open.remove(succ);
     				}

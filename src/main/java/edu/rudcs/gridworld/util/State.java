@@ -28,6 +28,13 @@ public class State {
     	this.expectCost = total;
     }
     
+    public void setExpectValue(int estimate, int cost){
+    	this.expectCost = 300*(estimate+cost) - cost;
+    }
+    public void setExpectBackValue(int estimate, int cost){
+    	this.expectCost = 300*(estimate+cost) - estimate;
+    }
+    
     public int getRow(){
     	return this.row;
     }
