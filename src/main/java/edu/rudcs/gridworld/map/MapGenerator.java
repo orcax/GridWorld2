@@ -84,11 +84,14 @@ public class MapGenerator {
     }
 
     public void generateMaps(int n) {
+    	for(int i = 0 ;i < n ; i++){
+    		generate();
+    	}
     }
 
     public static void main(String[] args) {
         MapGenerator mapGen = new MapGenerator();
-        mapGen.generate();
+        mapGen.generateMaps(100);
         System.out.println();
     }
 
