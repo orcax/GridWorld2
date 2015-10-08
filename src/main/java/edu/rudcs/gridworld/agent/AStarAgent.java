@@ -155,6 +155,7 @@ public class AStarAgent extends Agent {
                 node = node.getParent();
             }
             frontiers.clear();
+            end = true;
             return;
         }
         exploredSet.add(hash(pc.loc));

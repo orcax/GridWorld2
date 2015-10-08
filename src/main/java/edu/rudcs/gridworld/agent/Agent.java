@@ -19,6 +19,8 @@ public class Agent extends Actor {
     public static final Color PATH_COLOR = new Color(255, 255, 153);
 
     protected final Logger log = Logger.getLogger(Agent.class.getName());
+    
+    protected boolean end = false;
 
     public Agent() {
         setColor(new Color(0, 221, 0));
@@ -50,6 +52,10 @@ public class Agent extends Actor {
     @Override
     public Agent clone() {
         return new Agent();
+    }
+    
+    public boolean isEnd() {
+        return end;
     }
 
     public void turnLeft() {

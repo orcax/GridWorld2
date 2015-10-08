@@ -18,6 +18,8 @@ import edu.rudcs.gridworld.agent.Agent;
 
 public class SearchMap {
 
+    private static final int MAX_STEPS = 100000;
+
     protected int rows;
     protected int cols;
     protected Agent agent;
@@ -129,6 +131,13 @@ public class SearchMap {
     public void show() {
         if (world != null) {
             world.show();
+        }
+    }
+
+    public void run() {
+        int steps = 0;
+        while (!agent.isEnd() && steps <= MAX_STEPS) {
+            agent.act();
         }
     }
 }
