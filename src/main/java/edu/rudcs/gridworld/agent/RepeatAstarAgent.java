@@ -249,20 +249,25 @@ public class RepeatAstarAgent extends Agent {
     		}
     	}
     	clear();
-    	
-    	
     	computePath();
+    	return showRightPath();
+    	
+    }
+    
+    protected int showRightPath(){
+    	
     	Grid<Actor> grid = getGrid();
     	TreeNode<State> node = tree.get(goal);
     	int i = 0;
     	while(node.getParent() != null){
     		State s = node.getData();
-    		grid.putColor(new Location(s.getRow(),s.getCol()), Color.DARK_GRAY);
+    		grid.putColor(new Location(s.getRow(),s.getCol()), Color.RED);
     		node = node.getParent();
     		i++;
     	}
     	current = goal;
     	return i;
+    	
     }
     
     protected void record(String filename, String mapName,String content) throws IOException{

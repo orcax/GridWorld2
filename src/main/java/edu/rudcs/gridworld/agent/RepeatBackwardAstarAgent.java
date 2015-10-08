@@ -1,5 +1,6 @@
 package edu.rudcs.gridworld.agent;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -120,4 +121,23 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     	
 	}
 	
+	protected int showRightPath(){
+		 
+	
+		 Grid<Actor> grid = getGrid();	
+		 TreeNode<State> node = tree.get(current).getParent();
+		
+		 if(node == null)
+			 
+			 return 0;
+		 int i = 0;
+		 do{
+			 State s = node.getData();
+			 grid.putColor(new Location(s.getRow(),s.getCol()),Color.RED);
+			 node = node.getParent();
+			 i++;
+		 }while(node != null);
+		 current = goal;
+	     return i;
+	}
 }
