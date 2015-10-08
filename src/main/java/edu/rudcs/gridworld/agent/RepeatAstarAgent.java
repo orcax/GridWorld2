@@ -1,6 +1,12 @@
 package edu.rudcs.gridworld.agent;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -56,6 +62,8 @@ public class RepeatAstarAgent extends Agent {
     protected int expandCounter;
     protected int exploreCounter;
     protected int stepCounter;
+    
+    
     
     public RepeatAstarAgent(State start, State goal, byte[][] cells, int rows , int cols){
     	
@@ -195,14 +203,95 @@ public class RepeatAstarAgent extends Agent {
     }
     
     protected void noPath(){
+    	end = true;
     	bStart = false;
+    	String sb = "fail,total expand node is " + expandCounter
+    			+", total explore node is " + exploreCounter
+    			+", total step is " + stepCounter + "\n";
+    	System.out.print(sb);
+    	try{
+    	    record("record/",getClass().getName(),sb);
+    	}
+    	catch(IOException e){
+    		
+    	}
     }
     
     protected void success(){
     	end = true;
-    	System.out.println("success,total expand node is " + expandCounter
+    	
+    	String sb = "success, total expand node is " + expandCounter
     			+", total explore node is " + exploreCounter
-    			+", total step is " + stepCounter);
+    			+", total step is " + stepCounter 
+    			+ ", the right path length is ";
+    	int length = findOriginalPathLength();
+    	sb = sb + length + "\n";
+    	System.out.print(sb);
+    	try{
+    	    record("record/",getClass().getName(),sb);
+    	}
+    	catch(IOException e){
+    		
+    	}
+    }
+    
+    protected void clear(){
+    	tree.clear();
+    	
+    }
+    
+    protected int findOriginalPathLength(){
+    	current = start;
+    	
+    	for(int k = 0; k < rows; k++){
+    		for(int j = 0; j < cols; j++){
+    			states[k][j].SetStatus(true);
+    		}
+    	}
+    	clear();
+    	
+    	
+    	computePath();
+    	Grid<Actor> grid = getGrid();
+    	TreeNode<State> node = tree.get(goal);
+    	int i = 0;
+    	while(node.getParent() != null){
+    		State s = node.getData();
+    		grid.putColor(new Location(s.getRow(),s.getCol()), Color.DARK_GRAY);
+    		node = node.getParent();
+    		i++;
+    	}
+    	current = goal;
+    	return i;
+    }
+    
+    protected void record(String filename, String mapName,String content) throws IOException{
+    	FileWriter fw = null; 
+    	PrintWriter pw = null;
+    	 
+         try {
+        	 File file = new File(filename+mapName);  
+        	 if(!file.exists()){
+        		 file.createNewFile();
+        	 }
+        	 fw = new FileWriter(file,true);
+             pw = new PrintWriter(fw);
+             pw.append(content.toString());
+         } catch (FileNotFoundException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+         } catch (UnsupportedEncodingException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+         } finally {
+             if (pw != null) {
+                 pw.close();
+             }
+             if(fw != null){
+            	 fw.close();
+             }
+             
+         }
     }
     
     protected void move(){

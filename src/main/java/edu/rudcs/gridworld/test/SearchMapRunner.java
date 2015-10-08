@@ -72,9 +72,9 @@ public class SearchMapRunner {
 
     public void runRepeatAstarAgent(){
     	RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-    	 map.loadMap("maps/randmaps/3.txt");
+    	 map.loadMap("maps/randmaps/33.txt");
         
-         Agent agent = getRepeatAgent("backward",map);
+         Agent agent = getRepeatAgent("adaptive",map);
          map.loadAgent(agent);
          map.loadWorld();
          map.show();

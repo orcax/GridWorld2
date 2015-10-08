@@ -24,6 +24,11 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
 		expands = new HashMap<State,Integer>();
 	}
 	
+	protected void clear(){
+		super.clear();
+		newEstimates.clear();
+		expands.clear();
+	}
 	
 	
 	protected boolean computePath(){
