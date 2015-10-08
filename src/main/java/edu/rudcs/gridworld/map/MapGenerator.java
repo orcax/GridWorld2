@@ -10,6 +10,10 @@ public class MapGenerator {
 
     private static final String MAP_PATH = "maps/randmaps/";
     private static final String MAP_SUFFIX = "txt";
+    private static final char ROAD = '0';
+    private static final char WALL = '1';
+    private static final char START = 's';
+    private static final char GOAL = 'e';
 
     private int cols;
     private int rows;
@@ -34,24 +38,7 @@ public class MapGenerator {
         return String.format("%d.%s", ++count, MAP_SUFFIX);
     }
 
-    private void generate() {
-        char[][] map = new char[rows][cols];
-        for (int i = 0; i < rows; i++) {
-            Arrays.fill(map[i], '0');
-        }
-        Random rowRand = new Random();
-        Random colRand = new Random();
-        for (int i = 0; i < nWalls; i++) {
-            int row = rowRand.nextInt(rows);
-            int col = colRand.nextInt(cols);
-            if (map[row][col] == '0') {
-                map[row][col] = '1';
-            } else {
-                i--;
-            }
-        }
-        map[rowRand.nextInt(rows)][colRand.nextInt(cols)] = 's';
-        map[rowRand.nextInt(rows)][colRand.nextInt(cols)] = 'e';
+    private void saveAsFile(char[][] map) {
         StringBuffer sb = new StringBuffer(rows + " " + cols + "\n");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -76,9 +63,30 @@ public class MapGenerator {
         }
     }
 
+    private void genRandom() {
+        char[][] map = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            Arrays.fill(map[i], '0');
+        }
+        Random rowRand = new Random();
+        Random colRand = new Random();
+        for (int i = 0; i < nWalls; i++) {
+            int row = rowRand.nextInt(rows);
+            int col = colRand.nextInt(cols);
+            if (map[row][col] == '0') {
+                map[row][col] = '1';
+            } else {
+                i--;
+            }
+        }
+        map[rowRand.nextInt(rows)][colRand.nextInt(cols)] = 's';
+        map[rowRand.nextInt(rows)][colRand.nextInt(cols)] = 'e';
+        saveAsFile(map);
+    }
+
     public void generateMaps(int n) {
         for (int i = 0; i < n; i++) {
-            generate();
+            genRandom();
         }
     }
 

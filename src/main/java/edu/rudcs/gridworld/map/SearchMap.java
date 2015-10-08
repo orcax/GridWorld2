@@ -38,7 +38,7 @@ public class SearchMap {
         switch (at) {
         case WALL:
             return new Wall();
-        case AGENT:
+        case START:
             return agent;
         case GOAL:
             return new Goal();
@@ -124,8 +124,8 @@ public class SearchMap {
     }
 
     public List<Location> getStart() {
-        return objects.containsKey(ActorType.AGENT) ? objects
-                .get(ActorType.AGENT) : null;
+        return objects.containsKey(ActorType.START) ? objects
+                .get(ActorType.START) : null;
     }
 
     public void show() {

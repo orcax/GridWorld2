@@ -2,7 +2,7 @@ package edu.rudcs.gridworld.map;
 
 import java.awt.Color;
 
-public class Shadow extends StaticObject {
+public class Shadow extends StaticActor {
 
     public Shadow(int direction) {
         setColor(new Color(210, 255, 210));
