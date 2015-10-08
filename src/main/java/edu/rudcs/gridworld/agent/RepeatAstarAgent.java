@@ -7,8 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -154,8 +156,12 @@ public class RepeatAstarAgent extends Agent {
     
     
     public void act(){
+    		
     	
     	if(testGoal()){
+    		if(end == true){
+        		return;
+        	}
     		success();
     		return;
     	}
@@ -205,9 +211,10 @@ public class RepeatAstarAgent extends Agent {
     protected void noPath(){
     	end = true;
     	bStart = false;
-    	String sb = "fail,total expand node is " + expandCounter
-    			+", total explore node is " + exploreCounter
-    			+", total step is " + stepCounter + "\n";
+    	//Fail|total expandCounter|total exploreCounter|total step
+    	String sb = "F|" + expandCounter
+    			+"|" + exploreCounter
+    			+"|" + stepCounter + "\n";
     	System.out.print(sb);
     	try{
     	    record("record/",getClass().getName(),sb);
@@ -219,11 +226,11 @@ public class RepeatAstarAgent extends Agent {
     
     protected void success(){
     	end = true;
-    	
-    	String sb = "success, total expand node is " + expandCounter
-    			+", total explore node is " + exploreCounter
-    			+", total step is " + stepCounter 
-    			+ ", the right path length is ";
+    	//success|total expandCounter|total exploreCounter|total step|right path long
+    	String sb = "S|" + expandCounter
+    			+"|" + exploreCounter
+    			+"|" + stepCounter 
+    			+ "|";
     	int length = findOriginalPathLength();
     	sb = sb + length + "\n";
     	System.out.print(sb);
@@ -275,7 +282,8 @@ public class RepeatAstarAgent extends Agent {
     	PrintWriter pw = null;
     	 
          try {
-        	 File file = new File(filename+mapName);  
+        	 
+        	 File file = new File(filename+mapName+ManagementFactory.getRuntimeMXBean().getStartTime());  
         	 if(!file.exists()){
         		 file.createNewFile();
         	 }
