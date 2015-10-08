@@ -8,9 +8,8 @@ import java.util.Random;
 
 public class MapGenerator {
 
-    private static final String MAP_PATH = "maps/";
-    private static final String MAP_PREFIX = "randmap-";
-    private static final String MAP_SUFFIX = ".txt";
+    private static final String MAP_PATH = "maps/randmaps/";
+    private static final String MAP_SUFFIX = "txt";
 
     private int cols;
     private int rows;
@@ -32,13 +31,7 @@ public class MapGenerator {
     }
 
     private String getMapName() {
-        StringBuffer sb = new StringBuffer(MAP_PREFIX);
-        for (int i = count.toString().length(); i < 4; i++) {
-            sb.append("0");
-        }
-        sb.append(++count);
-        sb.append(MAP_SUFFIX);
-        return sb.toString();
+        return String.format("%d.%s", ++count, MAP_SUFFIX);
     }
 
     private void generate() {
@@ -84,15 +77,14 @@ public class MapGenerator {
     }
 
     public void generateMaps(int n) {
-    	for(int i = 0 ;i < n ; i++){
-    		generate();
-    	}
+        for (int i = 0; i < n; i++) {
+            generate();
+        }
     }
 
     public static void main(String[] args) {
         MapGenerator mapGen = new MapGenerator();
         mapGen.generateMaps(100);
-        System.out.println();
     }
 
 }

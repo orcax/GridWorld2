@@ -8,8 +8,8 @@ public class SearchMapTester {
 
     public static void main(String[] args) {
         SearchMap map = new SearchMap();
-        for (int i = 0; i < 5; i++) {
-            map.loadMap("maps/map4.txt");
+        for (int i = 1; i < 5; i++) {
+            map.loadMap("maps/randmaps/" + i + ".txt");
             Agent agent = new AStarAgent(map.getGoal().get(0));
             map.loadAgent(agent);
             map.loadWorld();

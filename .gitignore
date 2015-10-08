@@ -2,6 +2,7 @@
 /bin/
 /log/
 /.gradle/
+/maps/randmaps
 
 *.classpath
 *.project
