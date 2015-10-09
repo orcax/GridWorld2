@@ -11,12 +11,11 @@ public class AssigmentUITester {
 	public static void main(String[] args){
 		AssigmentUITester at = new AssigmentUITester();
 		at.runRepeatAstarAgent();
-		
 	}
 
     public void runRepeatAstarAgent() {
         RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-        map.loadMap("maps/randmaps/1.txt");
+        map.loadMap("maps/randmazes/1.txt");
         Agent agent = getRepeatAgent("adaptive", map);
         map.loadAgent(agent);
         map.loadWorld();

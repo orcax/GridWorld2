@@ -209,6 +209,7 @@ public class RepeatAstarAgent extends Agent {
     }
     
     protected void noPath(){
+    	if(end) return;
     	end = true;
     	bStart = false;
     	//Fail|total expandCounter|total exploreCounter|total step
@@ -342,15 +343,6 @@ public class RepeatAstarAgent extends Agent {
     	int row = s.getRow();
     	int col = s.getCol();
     	
-    		
-    	if(col + 1 < cols &&
-    			(states[row][col+1].getType()!=1 || !states[row][col+1].getStatus())){
-    		succesors.add(states[row][col+1]);
-    	}
-    	if(col - 1 >= 0 && 
-    			(states[row][col-1].getType()!=1 || !states[row][col-1].getStatus())){
-    		succesors.add(states[row][col-1]);
-    	}
     	if(row + 1 < rows && 
     			(states[row+1][col].getType()!=1 || !states[row+1][col].getStatus())){
     		succesors.add(states[row+1][col]);
@@ -358,6 +350,14 @@ public class RepeatAstarAgent extends Agent {
     	if(row - 1 >= 0 && 
     			(states[row-1][col].getType()!=1 || !states[row-1][col].getStatus())){
     		succesors.add(states[row-1][col]);
+    	}
+    	if(col + 1 < cols &&
+    			(states[row][col+1].getType()!=1 || !states[row][col+1].getStatus())){
+    		succesors.add(states[row][col+1]);
+    	}
+    	if(col - 1 >= 0 && 
+    			(states[row][col-1].getType()!=1 || !states[row][col-1].getStatus())){
+    		succesors.add(states[row][col-1]);
     	}
         return succesors;
     }

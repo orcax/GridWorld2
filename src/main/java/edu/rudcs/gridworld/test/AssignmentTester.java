@@ -7,7 +7,7 @@ import edu.rudcs.gridworld.agent.RepeatForwardAstarAgent;
 import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
 public class AssignmentTester {
-
+    
     public void testRepeatForwardAstar() {
         for (int i = 1; i <= 100; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();

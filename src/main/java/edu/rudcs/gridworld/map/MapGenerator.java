@@ -92,13 +92,11 @@ public class MapGenerator {
         int row = hashVal / cols;
         return new Pair(row, col);
     }
-    
+
     private Pair[] generateStartEnd() {
         Random rand = new Random();
-        return new Pair[] {
-                new Pair(rand.nextInt(rows), rand.nextInt(cols)),
-                new Pair(rand.nextInt(rows), rand.nextInt(cols)),
-        };
+        return new Pair[] { new Pair(rand.nextInt(rows), rand.nextInt(cols)),
+                new Pair(rand.nextInt(rows), rand.nextInt(cols)), };
     }
 
     private char[][] generateByRandom() {
@@ -151,7 +149,6 @@ public class MapGenerator {
                 List<Integer> neighbors = new ArrayList<Integer>();
                 // NORTH
                 if (pos.row - 1 >= 0 && map[pos.row - 1][pos.col] == UNVISITED) {
-                    Integer hashNPos = hash(pos.row - 1, pos.col);
                     neighbors.add(hash(new Pair(pos.row - 1, pos.col)));
                 }
                 // SOUTH
@@ -184,11 +181,6 @@ public class MapGenerator {
             char[][] map = generateByDfs();
             saveAsFile(map);
         }
-    }
-
-    public static void main(String[] args) {
-        MapGenerator mapGen = new MapGenerator();
-        mapGen.generateMaps(100);
     }
 
 }
