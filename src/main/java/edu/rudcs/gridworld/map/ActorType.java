@@ -10,10 +10,10 @@ public enum ActorType {
         this.value = value;
     }
 
-    public static ActorType fromString(String value) {
-        for (ActorType t : ActorType.values()) {
-            if (value.equals(t.value)) {
-                return t;
+    public static ActorType fromChar(char value) {
+        for (ActorType at : ActorType.values()) {
+            if (at.value == value) {
+                return at;
             }
         }
         return null;
@@ -22,6 +22,10 @@ public enum ActorType {
     @Override
     public String toString() {
         return this.name();
+    }
+
+    public char toChar() {
+        return this.value;
     }
 
 }

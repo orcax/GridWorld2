@@ -66,9 +66,8 @@ public class SearchMap {
             for (int i = 0; i < rows; i++) {
                 line = br.readLine();
                 values = line.split(" ");
-                assert values.length >= cols;
                 for (int j = 0; j < cols; j++) {
-                    ActorType at = ActorType.fromString(values[j]);
+                    ActorType at = ActorType.fromChar(values[j].charAt(0));
                     if (!ActorType.ROAD.equals(at)) {
                         if (!objects.containsKey(at)) {
                             objects.put(at, new ArrayList<Location>());

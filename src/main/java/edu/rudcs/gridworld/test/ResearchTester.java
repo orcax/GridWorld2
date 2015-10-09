@@ -13,10 +13,10 @@ import edu.rudcs.gridworld.agent.RepeatForwardAstarAgent;
 import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 import edu.rudcs.gridworld.map.SearchMap;
 
-public class SearchMapRunner {
+public class ResearchTester {
 
     public static void main(String[] args) {
-        SearchMapRunner runner = new SearchMapRunner();
+        ResearchTester runner = new ResearchTester();
         // runner.runBfs();
         // runner.runAStar();
         // runner.runDStar();
@@ -45,7 +45,7 @@ public class SearchMapRunner {
 
     public void runDStar() {
         SearchMap map = new SearchMap();
-        map.loadMap("maps/map4.txt");
+        map.loadMap("maps/randmaps/1.txt");
         Agent agent = new DStarAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
@@ -70,34 +70,29 @@ public class SearchMapRunner {
         map.show();
     }
 
-    public void runRepeatAstarAgent(){
-    	RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-    	 map.loadMap("maps/randmaps/33.txt");
-        
-         Agent agent = getRepeatAgent("adaptive",map);
-         map.loadAgent(agent);
-         map.loadWorld();
-         map.show();
+    public void runRepeatAstarAgent() {
+        RepeatAstarSearchMap map = new RepeatAstarSearchMap();
+        map.loadMap("maps/randmaps/1.txt");
+        Agent agent = getRepeatAgent("adaptive", map);
+        map.loadAgent(agent);
+        map.loadWorld();
+        map.show();
     }
 
     public Agent getRepeatAgent(String s, RepeatAstarSearchMap map) {
         switch (s) {
-
         case "forward":
             return new RepeatForwardAstarAgent(map.getStarts().get(0), map
                     .getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
-
         case "backward":
             return new RepeatBackwardAstarAgent(map.getStarts().get(0), map
                     .getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
-
         case "adaptive":
             return new AdaptiveAstarAgent(map.getStarts().get(0), map
                     .getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
-
         }
         return null;
 
