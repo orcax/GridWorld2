@@ -22,7 +22,7 @@ public class ResearchTester {
         // runner.runDStar();
         // runner.runLpaStar();
         // runner.runDStarLiteAgent();
-        runner.runRepeatAstarAgent();
+        //runner.runRepeatAstarAgent();
     }
 
     public void runBfs() {
@@ -70,31 +70,5 @@ public class ResearchTester {
         map.show();
     }
 
-    public void runRepeatAstarAgent() {
-        RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-        map.loadMap("maps/randmaps/1.txt");
-        Agent agent = getRepeatAgent("adaptive", map);
-        map.loadAgent(agent);
-        map.loadWorld();
-        map.show();
-    }
 
-    public Agent getRepeatAgent(String s, RepeatAstarSearchMap map) {
-        switch (s) {
-        case "forward":
-            return new RepeatForwardAstarAgent(map.getStarts().get(0), map
-                    .getGoals().get(0), map.getCells(), map.getRows(),
-                    map.getColumn());
-        case "backward":
-            return new RepeatBackwardAstarAgent(map.getStarts().get(0), map
-                    .getGoals().get(0), map.getCells(), map.getRows(),
-                    map.getColumn());
-        case "adaptive":
-            return new AdaptiveAstarAgent(map.getStarts().get(0), map
-                    .getGoals().get(0), map.getCells(), map.getRows(),
-                    map.getColumn());
-        }
-        return null;
-
-    }
 }
