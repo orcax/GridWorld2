@@ -45,7 +45,7 @@ public class MazeGenerator {
         char[][] map = new char[rows][cols];
         Arrays.fill(map[0], '1');
         Arrays.fill(map[rows - 1], '1');
-        for (int i = 0; i < rows; i++) {
+        for (int i = 1; i < rows - 1; i++) {
             Arrays.fill(map[i], '0');
             map[i][0] = '1';
             map[i][cols - 1] = '1';

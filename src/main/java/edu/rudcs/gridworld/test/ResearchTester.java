@@ -10,15 +10,6 @@ import edu.rudcs.gridworld.map.SearchMap;
 
 public class ResearchTester {
 
-    public static void main(String[] args) {
-        ResearchTester runner = new ResearchTester();
-        // runner.runBfs();
-        // runner.runAStar();
-        // runner.runDStar();
-        // runner.runLpaStar();
-        // runner.runDStarLiteAgent();
-    }
-
     public void runBfs() {
         SearchMap map = new SearchMap();
         map.loadMap("maps/map1.txt");
@@ -39,7 +30,7 @@ public class ResearchTester {
 
     public void runDStar() {
         SearchMap map = new SearchMap();
-        map.loadMap("maps/randmaps/1.txt");
+        map.loadMap("maps/randmazes/1.txt");
         Agent agent = new DStarAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
@@ -57,11 +48,19 @@ public class ResearchTester {
 
     public void runDStarLiteAgent() {
         SearchMap map = new SearchMap();
-        map.loadMap("maps/map4.txt");
+        map.loadMap("maps/randmazes/1.txt");
         Agent agent = new DStarLiteAgent(map.getGoal().get(0));
         map.loadAgent(agent);
         map.loadWorld();
         map.show();
     }
 
+    public static void main(String[] args) {
+        ResearchTester runner = new ResearchTester();
+        // runner.runBfs();
+        // runner.runAStar();
+        // runner.runDStar();
+        // runner.runLpaStar();
+        runner.runDStarLiteAgent();
+    }
 }
