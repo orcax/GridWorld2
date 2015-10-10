@@ -3,6 +3,7 @@
 /log/
 /.gradle/
 /maps/randmaps
+/maps/randmazes
 /record
 
 *.classpath

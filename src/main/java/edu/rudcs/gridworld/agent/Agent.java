@@ -23,7 +23,8 @@ public class Agent extends Actor {
     protected boolean end = false;
 
     public Agent() {
-        setColor(new Color(0, 221, 0));
+        //setColor(new Color(0, 221, 0));
+        setColor(Color.RED);
         try {
             FileHandler fileHander = new FileHandler("log/" + new Date());
             log.addHandler(fileHander);
