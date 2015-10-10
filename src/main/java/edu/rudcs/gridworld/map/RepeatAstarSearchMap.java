@@ -3,6 +3,7 @@ package edu.rudcs.gridworld.map;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.rudcs.gridworld.map.actor.ActorType;
 import edu.rudcs.gridworld.util.State;
 import info.gridworld.grid.Location;
 

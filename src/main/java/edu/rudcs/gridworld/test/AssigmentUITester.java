@@ -15,8 +15,8 @@ public class AssigmentUITester {
 
     public void runRepeatAstarAgent() {
         RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-        map.loadMap("maps/randmaps/88.txt");
-        Agent agent = getRepeatAgent("adaptive", map);
+        map.loadMap("maps/randmazes/1.txt");
+        Agent agent = getRepeatAgent("backward", map);
         map.loadAgent(agent);
         map.loadWorld();
         map.show();

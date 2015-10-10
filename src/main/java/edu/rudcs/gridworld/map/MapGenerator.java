@@ -1,8 +1,5 @@
 package edu.rudcs.gridworld.map;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,20 +20,14 @@ public class MapGenerator extends Generator {
         }
     }
 
-    private static final String MAP_PATH = "maps/randmaps/";
-    private static final String MAP_SUFFIX = "txt";
-    private static final char ROAD = ActorType.ROAD.toChar();
-    private static final char WALL = ActorType.WALL.toChar();
-    private static final char START = ActorType.START.toChar();
-    private static final char GOAL = ActorType.GOAL.toChar();
     private static final char UNVISITED = '\0';
 
     private int cols;
     private int rows;
     private int nWalls;
-    private Integer count;
 
     public MapGenerator() {
+        this.path = ROOT_PATH + "randmaps/";
         this.cols = 101;
         this.rows = 101;
         this.nWalls = (int) (0.3 * cols * rows);
@@ -44,39 +35,11 @@ public class MapGenerator extends Generator {
     }
 
     public MapGenerator(int cols, int rows, int nWalls) {
+        this.path = ROOT_PATH + "randmaps/";
         this.cols = cols;
         this.rows = rows;
         this.nWalls = nWalls;
         this.count = 0;
-    }
-
-    private String getMapName() {
-        return String.format("%d.%s", ++count, MAP_SUFFIX);
-    }
-
-    private void saveAsFile(char[][] map) {
-        StringBuffer sb = new StringBuffer(rows + " " + cols + "\n");
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                sb.append(map[i][j] + " ");
-            }
-            sb.append("\n");
-        }
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter(MAP_PATH + getMapName(), "utf-8");
-            pw.write(sb.toString());
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            if (pw != null) {
-                pw.close();
-            }
-        }
     }
 
     private int hash(int row, int col) {
@@ -99,7 +62,8 @@ public class MapGenerator extends Generator {
                 new Pair(rand.nextInt(rows), rand.nextInt(cols)), };
     }
 
-    private char[][] generateByRandom() {
+    @Override
+    public char[][] generate() {
         char[][] map = new char[rows][cols];
         for (int i = 0; i < rows; i++) {
             Arrays.fill(map[i], ROAD);
