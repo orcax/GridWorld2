@@ -8,19 +8,27 @@ public class State {
 	
 	private static final int COLUMN = 0x000003FF;
 	private static final int ROW = 0x000FFC00;
-	private static final int EXPECT = 0x7FF00000;
+	private static final int ROWCOL = 0x000FFFFF;
+	private static final int EXPECT = 0xFFF00000;
+	private static final int EXP = 0x00000FFF;
 	
-	private int row;
-	private int col;
+	private static final int ROW_LENGTH = 10;
+	private static final int EXP_LENGTH = 20;
+	
+	//private int row;
+	//private int col;
 	private boolean bSearch;
 	private boolean canMove;
-	private int expectCost;
+	//private int expectCost;
 	
-
+	private int seq;
+	
 	
     public State(int row, int col,byte type){
-    	this.row = row;
-    	this.col = col;
+    	seq = EXPECT;
+    //	this.row = row;
+    	seq = seq|col|(row<<ROW_LENGTH);
+    //	this.col = col;
     	if(type != 1){
     		this.canMove = true;
     	}
@@ -28,30 +36,41 @@ public class State {
     		this.canMove = false;
     	}
     	bSearch = false;
-    	expectCost = Integer.MAX_VALUE;
+    	
+    	//expectCost = Integer.MAX_VALUE;
     }
     
     public int getExpectValue(){
-    	return this.expectCost;
+    	int exp = (seq&EXPECT)>>EXP_LENGTH&EXP;
+    	return exp;
     }
     
     public void setExpectValue(int total){
-    	this.expectCost = total;
+    	seq = seq&ROWCOL;
+    	seq = seq|((total<<EXP_LENGTH)&EXPECT);
     }
     
     public void setExpectValue(int estimate, int cost){
-    	this.expectCost = 300*(estimate+cost) - cost;
+    	//this.expectCost = 300*(estimate+cost) - cost;
+    	int total = 4*(estimate+cost) - cost;
+    	seq = seq&ROWCOL;
+    	seq = seq|((total<<EXP_LENGTH)&EXPECT);
     }
     public void setExpectBackValue(int estimate, int cost){
-    	this.expectCost = 300*(estimate+cost) - estimate;
+    	//this.expectCost = 300*(estimate+cost) - estimate;
+    	int total = 4*(estimate+cost) - cost;
+    	seq = seq&ROWCOL;
+    	seq = seq|((total<<EXP_LENGTH)&EXPECT);
     }
     
     public int getRow(){
-    	return this.row;
+    	int row = (seq&ROW)>>ROW_LENGTH;
+    	return row;
     }
     
     public int getCol(){
-    	return this.col;
+    	int col = seq&COLUMN;
+    	return col;
     }
     
     public void SetStatus(boolean search){
@@ -91,7 +110,10 @@ public class State {
     	}
     }*/
     
-    public boolean equal(State state) {
+    
+    public boolean equals(State state) {
+    	int row = getRow();
+    	int col = getCol();
     	if(row == state.getRow() && col == state.getCol())
     		return true;
     	return false;

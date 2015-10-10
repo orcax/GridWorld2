@@ -37,7 +37,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     	close.clear();
     	/////
     	
-    	goal.setExpectValue(manhattanDistance(goal,current)+cost.get(goal));
+    	goal.setExpectValue(manhattanDistance(goal,current),cost.get(goal));
     	open.add(goal);
     	
     	tree.put(goal, new TreeNode<State>(goal));
@@ -76,7 +76,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     				TreeNode<State> child = new TreeNode<State>(succ);
     				curNode.addChild(child);
     				tree.put(succ, child);
-    				succ.setExpectValue(manhattanDistance(succ,current)+cost.get(succ));
+    				succ.setExpectValue(manhattanDistance(succ,current),cost.get(succ));
     				if(open.contains(succ)){
     					open.remove(succ);
     				}

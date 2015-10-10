@@ -10,18 +10,13 @@ import java.io.UnsupportedEncodingException;
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeMap;
-import java.util.concurrent.PriorityBlockingQueue;
-
 import edu.rudcs.gridworld.map.actor.Shadow;
 import edu.rudcs.gridworld.util.BinaryHeap;
 import edu.rudcs.gridworld.util.State;
@@ -101,6 +96,7 @@ public class RepeatAstarAgent extends Agent {
     		    else if(i == goal.getRow() && j == goal.getCol()){
     		    	this.goal = states[i][j];
     		    }
+    		    //System.out.println(states[i][j].getRow()+"|"+states[i][j].getCol());
     		}
     		//System.out.println("");
     	}
@@ -201,7 +197,7 @@ public class RepeatAstarAgent extends Agent {
     
     protected boolean testGoal(){
     	
-    	if(current.equal(goal)){
+    	if(current.equals(goal)){
     		return true;
     	}
     	
@@ -234,7 +230,8 @@ public class RepeatAstarAgent extends Agent {
     			+"|" + stepCounter 
     			+ "|";
     	int length = findOriginalPathLength();
-    	sb = sb + length + "\n";
+    	int rate = 100 * stepCounter / length;
+    	sb = sb + length + "|" + rate + "%" +  "\n" ;
     	System.out.print(sb);
     	try{
     	    record("record/",getClass().getName(),sb);
