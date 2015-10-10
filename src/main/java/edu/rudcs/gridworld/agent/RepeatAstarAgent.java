@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
@@ -310,7 +311,7 @@ public class RepeatAstarAgent extends Agent {
     
     protected void move(){
     	State next = getNextNode();
-    	if(next != null && next.getType() != 1){
+    	if(next != null && next.canMove()){
     	    moveTo(chgLocation(next));
     	    current = next;
     	    updateExplore();
@@ -344,21 +345,69 @@ public class RepeatAstarAgent extends Agent {
     	int col = s.getCol();
     	
     	if(row + 1 < rows && 
-    			(states[row+1][col].getType()!=1 || !states[row+1][col].getStatus())){
+    			(states[row+1][col].canMove() || !states[row+1][col].getStatus())){
     		succesors.add(states[row+1][col]);
     	}
     	if(row - 1 >= 0 && 
-    			(states[row-1][col].getType()!=1 || !states[row-1][col].getStatus())){
+    			(states[row-1][col].canMove() || !states[row-1][col].getStatus())){
     		succesors.add(states[row-1][col]);
     	}
     	if(col + 1 < cols &&
-    			(states[row][col+1].getType()!=1 || !states[row][col+1].getStatus())){
+    			(states[row][col+1].canMove()|| !states[row][col+1].getStatus())){
     		succesors.add(states[row][col+1]);
     	}
     	if(col - 1 >= 0 && 
-    			(states[row][col-1].getType()!=1 || !states[row][col-1].getStatus())){
+    			(states[row][col-1].canMove() || !states[row][col-1].getStatus())){
     		succesors.add(states[row][col-1]);
     	}
+        return succesors;
+    }
+    
+    protected List<State> getRandSuccesors(State s){
+    	List<State> succesors = new ArrayList<State>();
+    	int row = s.getRow();
+    	int col = s.getCol();
+    	
+    	ArrayList<Integer> list = new ArrayList<Integer>();
+    	int count = 4;
+    	Random r = new Random();
+    	while(list.size() < count){
+    		int i = r.nextInt(4);
+    		if(!list.contains(i)){
+    			list.add(i);
+    		}
+    	}
+    	
+    	for(int i = 0; i < count; i++){
+    		switch(list.get(i)){
+    		case 0:
+    			if(row + 1 < rows && 
+    	    			(states[row+1][col].canMove()|| !states[row+1][col].getStatus())){
+    	    		succesors.add(states[row+1][col]);
+    	    	}
+    			break;
+    		case 1:
+    			if(row - 1 >= 0 && 
+    	    		(states[row-1][col].canMove()|| !states[row-1][col].getStatus())){
+    	        	succesors.add(states[row-1][col]);
+            	}
+    			break;
+    		case 2:
+    			if(col + 1 < cols &&
+    	    			(states[row][col+1].canMove()|| !states[row][col+1].getStatus())){
+    	    		succesors.add(states[row][col+1]);
+    	    	}
+    			break;
+    		case 3:
+    			if(col - 1 >= 0 && 
+    	    	    	(states[row][col-1].canMove()|| !states[row][col-1].getStatus())){
+            		succesors.add(states[row][col-1]);
+            	}
+    			break;
+    		}
+    	}
+    	
+
         return succesors;
     }
     
@@ -369,7 +418,7 @@ public class RepeatAstarAgent extends Agent {
     	TreeNode<State> node = tree.get(s);
     	for(TreeNode<State> succNode : node.getChildren()){
     		State succ = succNode.getData();
-    		if(succ.getType() != 1){
+    		if(succ.canMove()){
     			succesors.add(succ);
     		}
     	}
@@ -426,7 +475,7 @@ public class RepeatAstarAgent extends Agent {
 	    		return false;
 	    	}
 	    	
-	    	if(next.getType() != 1){
+	    	if(next.canMove()){
 	    		return true;
 	    	}
 	    	return false;
