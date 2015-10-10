@@ -1,8 +1,5 @@
 package edu.rudcs.gridworld.map;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,26 +17,19 @@ public class MazeGenerator extends Generator {
         }
     }
 
-    private static final String MAZE_PATH = "maps/randmazes/";
-    private static final String MAZE_SUFFIX = "txt";
-    private static final char ROAD = ActorType.ROAD.toChar();
-    private static final char WALL = ActorType.WALL.toChar();
-    private static final char START = ActorType.START.toChar();
-    private static final char GOAL = ActorType.GOAL.toChar();
-
     private int complexity;
     private int density;
-    private Integer count;
 
     public MazeGenerator(int rows, int cols, double complexity, double density) {
         this.rows = rows / 2 * 2 + 1;
         this.cols = cols / 2 * 2 + 1;
         this.complexity = (int) (complexity * 5 * (rows + cols));
         this.density = (int) (density * (int) (rows / 2) * (int) (cols / 2));
-        this.count = 0;
+        this.path = ROOT_PATH + "randmazes/";
     }
 
-    private char[][] generateByDfs() {
+    @Override
+    public char[][] generate() {
         char[][] map = new char[rows][cols];
         Arrays.fill(map[0], '1');
         Arrays.fill(map[rows - 1], '1');
@@ -79,46 +69,6 @@ public class MazeGenerator extends Generator {
         map[1][1] = 's';
         map[rows - 2][cols - 2] = 'g';
         return map;
-    }
-
-    private void dfs() {
-
-    }
-
-    private String getMapName() {
-        return String.format("%d.%s", ++count, MAZE_SUFFIX);
-    }
-
-    private void saveAsFile(char[][] map) {
-        StringBuffer sb = new StringBuffer(rows + " " + cols + "\n");
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                sb.append(map[i][j] + " ");
-            }
-            sb.append("\n");
-        }
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter(MAZE_PATH + getMapName(), "utf-8");
-            pw.write(sb.toString());
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            if (pw != null) {
-                pw.close();
-            }
-        }
-    }
-
-    public void generateMaps(int n) {
-        for (int i = 0; i < n; i++) {
-            char[][] map = generateByDfs();
-            saveAsFile(map);
-        }
     }
 
 }

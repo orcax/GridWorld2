@@ -1,15 +1,16 @@
 package edu.rudcs.gridworld.test;
 
-import edu.rudcs.gridworld.map.MazeGenerator;
+import edu.rudcs.gridworld.map.DfsMazeGenerator;
+import edu.rudcs.gridworld.map.Generator;
 
 public class MapTester {
 
     public static void main(String[] args) {
-        // MapGenerator mapGen = new MapGenerator();
-        // mapGen.generateMaps(100);
-
-        MazeGenerator mazeGen = new MazeGenerator(50, 100, 0.5, 0.5);
-        mazeGen.generateMaps(100);
+        Generator gen = null;
+        // gen = new MapGenerator();
+        // gen = new MazeGenerator(50, 100, 0.5, 0.5);
+        gen = new DfsMazeGenerator(50, 100);
+        gen.generateMaps(100);
     }
 
 }
