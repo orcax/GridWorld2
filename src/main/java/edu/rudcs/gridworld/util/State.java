@@ -2,12 +2,18 @@ package edu.rudcs.gridworld.util;
 
 import java.util.Set;
 
+
+
 public class State {
+	
+	private static final int COLUMN = 0x000003FF;
+	private static final int ROW = 0x000FFC00;
+	private static final int EXPECT = 0x7FF00000;
 	
 	private int row;
 	private int col;
 	private boolean bSearch;
-	private byte type;
+	private boolean canMove;
 	private int expectCost;
 	
 
@@ -15,7 +21,12 @@ public class State {
     public State(int row, int col,byte type){
     	this.row = row;
     	this.col = col;
-    	this.type = type;
+    	if(type != 1){
+    		this.canMove = true;
+    	}
+    	else{
+    		this.canMove = false;
+    	}
     	bSearch = false;
     	expectCost = Integer.MAX_VALUE;
     }
@@ -51,13 +62,34 @@ public class State {
     	return this.bSearch;
     }
     
-    public byte getType(){
-    	return this.type;
+    public boolean canMove(){
+    	return this.canMove;
     }
     
-    public void SetType(byte type){
-    	this.type = type;
+    public void setMove(byte type){
+    	if(type != 1){
+    		this.canMove = true;
+    	}
+    	else{
+    		this.canMove = false;
+    	}
     }
+    
+    /*
+    public boolean getType(){
+    	return this.type;
+    }
+    */
+    
+    /*
+    public void SetType(byte type){
+    	if(type != 1){
+    		this.type = false;
+    	}
+    	else{
+    		this.type = true;
+    	}
+    }*/
     
     public boolean equal(State state) {
     	if(row == state.getRow() && col == state.getCol())

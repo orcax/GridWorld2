@@ -65,7 +65,7 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
     		//System.out.println("mahatton of s:"+s.getExpectValue());
     		//System.out.println("cost of goal:" + cost.get(goal));
     		TreeNode<State> curNode = tree.get(s);
-    		List<State> successors = getSuccesors(s);
+    		List<State> successors = getRandSuccesors(s);
     		
     		//////
     		if(close.contains(s)){
