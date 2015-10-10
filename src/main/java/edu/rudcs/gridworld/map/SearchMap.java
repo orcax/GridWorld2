@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 import edu.rudcs.gridworld.agent.Agent;
+import edu.rudcs.gridworld.map.actor.Goal;
+import edu.rudcs.gridworld.map.actor.Wall;
 
 public class SearchMap {
 

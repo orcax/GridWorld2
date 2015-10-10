@@ -12,10 +12,10 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import edu.rudcs.gridworld.map.Goal;
-import edu.rudcs.gridworld.map.Path;
-import edu.rudcs.gridworld.map.Shadow;
-import edu.rudcs.gridworld.map.Wall;
+import edu.rudcs.gridworld.map.actor.Goal;
+import edu.rudcs.gridworld.map.actor.Path;
+import edu.rudcs.gridworld.map.actor.Shadow;
+import edu.rudcs.gridworld.map.actor.Wall;
 import edu.rudcs.gridworld.util.TreeNode;
 
 public class BfsAgent extends Agent {

@@ -21,7 +21,7 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.concurrent.PriorityBlockingQueue;
 
-import edu.rudcs.gridworld.map.Shadow;
+import edu.rudcs.gridworld.map.actor.Shadow;
 import edu.rudcs.gridworld.util.BinaryHeap;
 import edu.rudcs.gridworld.util.State;
 import edu.rudcs.gridworld.util.TreeNode;

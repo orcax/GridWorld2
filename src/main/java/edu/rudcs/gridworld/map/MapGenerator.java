@@ -11,9 +11,9 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
 
-public class MapGenerator {
+public class MapGenerator extends Generator {
 
-    private class Pair {
+    protected class Pair {
         int row;
         int col;
 

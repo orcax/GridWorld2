@@ -11,8 +11,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import edu.rudcs.gridworld.map.Shadow;
-import edu.rudcs.gridworld.map.Wall;
+import edu.rudcs.gridworld.map.actor.Shadow;
+import edu.rudcs.gridworld.map.actor.Wall;
 
 public class Agent extends Actor {
 

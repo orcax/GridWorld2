@@ -1,4 +1,5 @@
-package edu.rudcs.gridworld.map;
+package edu.rudcs.gridworld.map.actor;
+
 
 
 public class Goal extends StaticActor {
