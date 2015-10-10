@@ -11,7 +11,7 @@ public class AssignmentTester {
     public void testRepeatForwardAstar() {
         for (int i = 1; i <= 100; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-            map.loadMap("maps/randmaps/" + i + ".txt");
+            map.loadMap("maps/randmazes/" + i + ".txt");
             Agent agent = new RepeatForwardAstarAgent(map.getStarts().get(0),
                     map.getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
@@ -25,7 +25,7 @@ public class AssignmentTester {
     public void testRepeatBackwardAstar() {
         for (int i = 1; i <= 100; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-            map.loadMap("maps/randmaps/" + i + ".txt");
+            map.loadMap("maps/randmazes/" + i + ".txt");
             Agent agent = new RepeatBackwardAstarAgent(map.getStarts().get(0),
                     map.getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
@@ -39,7 +39,7 @@ public class AssignmentTester {
     public void testAdaptiveAstar() {
         for (int i = 1; i <= 100; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-            map.loadMap("maps/randmaps/" + i + ".txt");
+            map.loadMap("maps/randmazes/" + i + ".txt");
             Agent agent = new AdaptiveAstarAgent(map.getStarts().get(0), map
                     .getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());

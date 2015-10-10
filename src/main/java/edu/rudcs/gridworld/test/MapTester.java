@@ -9,7 +9,7 @@ public class MapTester {
         // mapGen.generateMaps(100);
 
         MazeGenerator mazeGen = new MazeGenerator(50, 100, 0.5, 0.5);
-        mazeGen.generateMaps(5);
+        mazeGen.generateMaps(100);
     }
 
 }

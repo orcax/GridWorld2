@@ -3,8 +3,13 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{titlesec}
+\usepackage{hyperref}
 
-\title{\textbf{CS 520: Assignment 1 } \\ Fast Trajectory Replanning \vspace{10cm}}
+\title{%
+\textbf{$\S$CS 520: Assignment 1 } \\
+Fast Trajectory Replanning
+\vspace{15em}}
 
 \author{%
 Xiaoyang Xie \\ 167008240 
@@ -14,16 +19,19 @@ Yikun Xian \\ 168000142}
 \date{%
 Department of Computer Science \\
 Rutgers University, New Brunswick, NJ \\
-\vspace{2cm}
-08 Octorber 2015}
+\vspace{7em}
+09 Octorber 2015}
 \begin{document}
 
 \maketitle\thispagestyle{empty}
 \clearpage
 \setcounter{page}{1}
 
+\titleformat{\section}{\Large\bfseries}{Part \thesection}{1em}{}
+
 \graphicspath{figures/}
 
+\setcounter{section}{-1}
 \input{parts/part0.tex}
 \input{parts/part1.tex}
 \input{parts/part2.tex}
@@ -31,5 +39,9 @@ Rutgers University, New Brunswick, NJ \\
 \input{parts/part4.tex}
 \input{parts/part5.tex}
 \input{parts/part6.tex}
+
+\bibliographystyle{plain}
+\bibliography{main}
+\nocite{*}
 
 \end{document}

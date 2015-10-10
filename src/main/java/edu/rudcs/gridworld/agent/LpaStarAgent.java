@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
 
-import edu.rudcs.gridworld.map.Goal;
-import edu.rudcs.gridworld.map.Wall;
+import edu.rudcs.gridworld.map.actor.Goal;
+import edu.rudcs.gridworld.map.actor.Wall;
 import edu.rudcs.gridworld.util.Cost;
 import edu.rudcs.gridworld.util.Tool;
 

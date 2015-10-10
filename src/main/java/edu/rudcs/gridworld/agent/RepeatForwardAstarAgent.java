@@ -56,7 +56,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
 			showExplore(s);
 			/////
     		
-    		List<State> successors = getSuccesors(s);
+    		List<State> successors = getRandSuccesors(s);
     		
     		for(State succ : successors){
     			

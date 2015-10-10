@@ -12,7 +12,7 @@ import java.util.TreeSet;
 import java.util.concurrent.PriorityBlockingQueue;
 
 import edu.rudcs.gridworld.map.ActorType;
-import edu.rudcs.gridworld.map.Wall;
+import edu.rudcs.gridworld.map.actor.Wall;
 import edu.rudcs.gridworld.util.Cost;
 import edu.rudcs.gridworld.util.Tool;
 

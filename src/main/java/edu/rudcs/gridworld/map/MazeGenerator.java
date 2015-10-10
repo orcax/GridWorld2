@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class MazeGenerator {
+public class MazeGenerator extends Generator {
 
     private class Pair {
         int row;
@@ -27,8 +27,6 @@ public class MazeGenerator {
     private static final char START = ActorType.START.toChar();
     private static final char GOAL = ActorType.GOAL.toChar();
 
-    private int rows;
-    private int cols;
     private int complexity;
     private int density;
     private Integer count;
@@ -67,8 +65,8 @@ public class MazeGenerator {
                 if (neighbors.size() == 0)
                     continue;
                 Random seed = new Random();
-                Pair next = neighbors
-                        .get(new Random(seed.nextLong()).nextInt(neighbors.size()));
+                Pair next = neighbors.get(new Random(seed.nextLong())
+                        .nextInt(neighbors.size()));
                 int y0 = next.row, x0 = next.col;
                 if (map[y0][x0] == '0') {
                     map[y0][x0] = '1';
@@ -82,7 +80,11 @@ public class MazeGenerator {
         map[rows - 2][cols - 2] = 'g';
         return map;
     }
-    
+
+    private void dfs() {
+
+    }
+
     private String getMapName() {
         return String.format("%d.%s", ++count, MAZE_SUFFIX);
     }
@@ -111,7 +113,7 @@ public class MazeGenerator {
             }
         }
     }
-    
+
     public void generateMaps(int n) {
         for (int i = 0; i < n; i++) {
             char[][] map = generateByDfs();

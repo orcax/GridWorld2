@@ -1,4 +1,4 @@
-package edu.rudcs.gridworld.map;
+package edu.rudcs.gridworld.map.actor;
 
 import java.awt.Color;
 
