@@ -9,8 +9,8 @@ public class MapTester {
         Generator gen = null;
         // gen = new MapGenerator();
         // gen = new MazeGenerator(50, 100, 0.5, 0.5);
-        gen = new DfsMazeGenerator(50, 100);
-        gen.generateMaps(100);
+        gen = new DfsMazeGenerator(25, 25);
+        gen.generateMaps(1);
     }
 
 }
