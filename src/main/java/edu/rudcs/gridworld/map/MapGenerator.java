@@ -22,24 +22,16 @@ public class MapGenerator extends Generator {
 
     private static final char UNVISITED = '\0';
 
-    private int cols;
-    private int rows;
-    private int nWalls;
-
     public MapGenerator() {
         this.path = ROOT_PATH + "randmaps/";
         this.cols = 101;
         this.rows = 101;
-        this.nWalls = (int) (0.3 * cols * rows);
-        this.count = 0;
     }
 
-    public MapGenerator(int cols, int rows, int nWalls) {
+    public MapGenerator(int cols, int rows) {
         this.path = ROOT_PATH + "randmaps/";
         this.cols = cols;
         this.rows = rows;
-        this.nWalls = nWalls;
-        this.count = 0;
     }
 
     private int hash(int row, int col) {
@@ -64,27 +56,6 @@ public class MapGenerator extends Generator {
 
     @Override
     public char[][] generate() {
-        char[][] map = new char[rows][cols];
-        for (int i = 0; i < rows; i++) {
-            Arrays.fill(map[i], ROAD);
-        }
-        Random rowRand = new Random();
-        Random colRand = new Random();
-        for (int i = 0; i < nWalls; i++) {
-            int row = rowRand.nextInt(rows);
-            int col = colRand.nextInt(cols);
-            if (map[row][col] == '0') {
-                map[row][col] = '1';
-            } else {
-                i--;
-            }
-        }
-        map[rowRand.nextInt(rows)][colRand.nextInt(cols)] = 's';
-        map[rowRand.nextInt(rows)][colRand.nextInt(cols)] = 'e';
-        return map;
-    }
-
-    private char[][] generateByDfs() {
         char[][] map = new char[rows][cols];
         Set<Integer> unvisited = new TreeSet<Integer>();
         for (int i = 0; i < rows; i++) {
@@ -138,13 +109,6 @@ public class MapGenerator extends Generator {
         map[points[0].row][points[0].col] = START;
         map[points[1].row][points[1].col] = GOAL;
         return map;
-    }
-
-    public void generateMaps(int n) {
-        for (int i = 0; i < n; i++) {
-            char[][] map = generateByDfs();
-            saveAsFile(map);
-        }
     }
 
 }
