@@ -77,15 +77,105 @@ intermediate result of algorithm.
 \subsection{How to Run}
 
 Our project is built and packed by Gradle\footnote{http://gradle.org/}, 
-an open-source build automation tool. First, you should install and setup Gradle
-environment on your computer, and install Gradle plugin for Eclipse, named 
-"Gradle Integration for Eclipse". Then, download complete source code of the 
-project, which is attached in Sakai or available on the 
-Github\footnote{https://github.com/orcax/GridWorld2}. Finally, inside Eclipse,
+an open-source build automation tool. To run the project, you should first 
+install and setup Gradle environment on your computer, and install Gradle plugin 
+for Eclipse, called "Gradle Integration for Eclipse". Then, download complete 
+source code of the project, which is attached in Sakai or available on the 
+Github (\url{https://github.com/orcax/GridWorld2}). Finally, inside Eclipse,
 click $File\rightarrow Import\rightarrow Gradle\rightarrow Gradle~Project$ to
 import project. All runnable programs are placed in $test$ package.
 
 \subsection{Maze Generation Algorithm}
 
 In the experiment, we mainly use two kinds of grid map, namely random map with 
-discrete obstacles and random maze with consecutive obstacles.
+discrete obstacles and random maze with consecutive obstacles. The random map is
+generated according to the assignment requirement, so for each map, there are about
+30\% obstacles and 70\% roads. The start position and the goal position can be 
+placed either randomly or on diagonal corners. Difference between these two ways 
+lies in the absolute distance between start and goal, although, the experimental
+result implies that this initial distance in this type of random map has nearly 
+no influence on the performance of three algorithms. On the other hand, the 
+longer the distance is, the more probable it will lead to unreachable goals, so 
+in this case, we simply collect maps that exist a path between the start position
+and goal position.
+
+Random maze is the other type of maps tested in the experiment. It is generated
+according to DFS by expanding neighbors randomly. The generation process is 
+described as Algorithm \ref{alg:maze-gen}.
+
+\begin{algorithm}[ht!]
+\caption{Maze Generation Algorithm by DFS}
+\label{alg:maze-gen}
+\begin{algorithmic}[1]
+\Function{Generate-By-Dfs}{$map$}
+  \State set all cells in $map$ as $WALL$
+  \State $r=random(\lfloor map.rows/2 \rfloor) * 2 + 1$
+  \State $c=random(\lfloor map.cols/2 \rfloor) * 2 + 1$
+  \State $map[r][c] = ROAD$
+  \State call \textsc{Random-Dfs}($map, r, c$)
+  \State $map[1][1] = START$
+  \State $map[map.rows-2][map.cols-2] = GOAL$
+\EndFunction
+\end{algorithmic}
+\begin{algorithmic}[1]
+\Function{Random-Dfs}{$map$, $row$, $col$}
+  \State $(row',col')$=\textsc{Random-Neighbor}$(map, row, col)$
+  \While{$(row',col') \neq NULL$}
+    \State $map[row'][col']=ROAD$
+    \State $map[(row+row')/2][(col+col')/2]=ROAD$
+    \State call \textsc{Random-Dfs}($map, row', col'$)
+    \State ($row',col'$)=\textsc{Random-Neighbor}($map, row, col$)
+  \EndWhile
+\EndFunction
+\end{algorithmic}
+\begin{algorithmic}[1]
+\Function{Random-Neighbor}{$map$, $row$, $col$}
+  \State initialize $neighbors$ as empty list
+  \If{$row-2 > 0~and~map[row-2][col] \neq ROAD$}
+    \State $neighbors$.add($(row-2, col)$)
+  \EndIf
+  \If{$row+2 < map.rows~and~map[row+2][col] \neq ROAD$}
+    \State $neighbors$.add($(row+2, col)$)
+  \EndIf
+  \If{$col-2 > 0~and~map[row][col-2] \neq ROAD$}
+    \State $neighbors$.add($(row, col-2)$)
+  \EndIf
+  \If{$col+2 < map.cols~and~map[row][col+2] \neq ROAD$}
+    \State $neighbors$.add($(row, col+2)$)
+  \EndIf
+  \Return $neighbors[random(neighbors.size)]$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+In this algorithm, the map is initialized as two-dimensional array and set 
+all cells as obstacles (WALL). Roads will be expanded randomly and paved only 
+on the cells of odd index. To generate roads, we first begin with randomly 
+picking a cell on the map and set it as road. Then, randomly select one of its 
+non-road neighboring nodes (of odd index), set it and the node between them 
+as roads. Repeat this procedure until there is no valid neighboring nodes. 
+If this happens, traceback to its parent node and do the same thing again. At
+last, all nodes of odd index are traversed and some nodes of even index are
+set as road to connect two adjacent nodes. Finally, without loss of generality,
+we simply set top-left odd bottom-right respectively as start position and goal
+position.
+
+It is easy to prove that there is only one depth first tree generated during one 
+complete search. The connectivity of single depth first tree make the maze 
+always reachable, namely there always exists one path from start to goal. 
+Example of two kinds of map of size 50*50 is shown in Figure \ref{fig:map-and-maze}.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{map.png}
+    \caption{Map with discrete obstacles}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{maze.png}
+    \caption{Corridor-like maze}
+  \end{subfigure}
+  \caption{Example of random map and random maze}
+  \label{fig:map-and-maze}
+\end{figure}
+
