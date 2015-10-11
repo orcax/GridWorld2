@@ -105,9 +105,11 @@ public class MapGenerator extends Generator {
                 stack.add(neighbors.get(next));
             }
         }
-        Pair[] points = generateStartEnd();
-        map[points[0].row][points[0].col] = START;
-        map[points[1].row][points[1].col] = GOAL;
+       // Pair[] points = generateStartEnd();
+        //map[points[0].row][points[0].col] = START;
+        //map[points[1].row][points[1].col] = GOAL;
+        map[1][1] = START;
+        map[rows-2][cols-2] = GOAL;
         return map;
     }
 

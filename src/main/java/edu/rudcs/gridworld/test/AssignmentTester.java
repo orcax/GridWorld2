@@ -9,7 +9,7 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 public class AssignmentTester {
     
 	public int MAP_COUNT = 1000;
-	public String MAP_NAME = "maps/randmazes/";
+	public String MAP_NAME = "maps/randmaps/";
 	
     public void testRepeatForwardAstar() {
     	int expand = 0; 
@@ -104,9 +104,9 @@ public class AssignmentTester {
 
     public static void main(String[] args) {
         AssignmentTester at = new AssignmentTester();
-      //  at.testRepeatForwardAstar();
+        at.testRepeatForwardAstar();
         at.testRepeatBackwardAstar();
-      //  at.testAdaptiveAstar();
+        at.testAdaptiveAstar();
     }
 
 }

@@ -1,1 +1,21 @@
 \section{Understanding the Methods}
+
+\textbf{Problem:a)} Explain in your report why the first move of the agent for the example search problem from Figure 8 is the east rather than then north given that then agent does not know initially which cells are blocked.\\
+
+\textbf{Solution:}In the figure 8,the start state is cell[E][2] and goal state is cell[E][5]. For the north cell[D][2], the g(cell[D][2]) = 1 and the Manhattan distance to goal state is 3, namely h(cell[D][2]) = 3, then\\ 
+\begin{equation*}
+  \begin{aligned}  
+  f(cell[D][2]) &= g(cell[D][2]) + h(cell[D][2]) = 4. 
+  \end{aligned}
+\end{equation*}
+
+For the east cell[E][3], the g(cell[E][3]) = 1, and h(cell[E][3]) = 2, then\\ 
+\begin{equation*}
+  \begin{aligned}  
+  f(cell[E][3]) &= g(cell[E][3]) + h(cell[E][3]) = 3. \\
+                &< f(cell[D][2])
+  \end{aligned}
+\end{equation*}
+So, the agent will choose the east rather than the north.\\
+
+\textbf{Problem:b)}This project argues that the agent is guaranteed to reach the target if it is not separated from it by blocked cells. Give a convincing argument that the agent in finite gridworlds indeed either reaches the target or discovers that this is impossible in finite time. Prove that the number of moves of the agent until it reaches the target or discovers that this is impossible is bounded from above by the number of unblocked cells squared.\\

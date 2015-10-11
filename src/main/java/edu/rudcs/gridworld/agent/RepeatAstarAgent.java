@@ -233,12 +233,13 @@ public class RepeatAstarAgent extends Agent {
     			+"|" + exploreCounter
     			+"|" + stepCounter + "\n";
     	System.out.print(sb);
+    	/*
     	try{
     		 RepeatAstarAgent.Record("record/",getClass().getName(),sb);
     	}
     	catch(IOException e){
     		
-    	}
+    	}*/
     }
     
     public int getTotalExpand(){
@@ -254,7 +255,7 @@ public class RepeatAstarAgent extends Agent {
     
     public static void FinalRecord(int expand,int explore,int avg_expand, int avg_explore,int counter,int rate,String className){
     	
-    	String sb = expand+"|"+avg_expand+"|"+explore+"|"+avg_explore+"|"+counter+"|"+rate+"%";
+    	String sb = expand+","+avg_expand+","+explore+","+avg_explore+","+counter+","+rate+"%";
     	try{
     		 RepeatAstarAgent.Record("record/",className,sb);
     	}
@@ -273,16 +274,16 @@ public class RepeatAstarAgent extends Agent {
     	//success|total expandCounter|total exploreCounter|total step|right path long
     	int avgExpand = expandCounter / counter;
     	int avgExplore = exploreCounter / counter;
-    	String sb = "S|" + expandCounter +"|" + avgExpand
-    			+"|" + exploreCounter + "|" + avgExplore
-    			+"|" + stepCounter 
-    			+ "|";
+    	String sb = "S," + expandCounter +"," + avgExpand
+    			+"," + exploreCounter + "," + avgExplore
+    			+"," + stepCounter 
+    			+ ",";
     	int length = findOriginalPathLength();
     	rate = 100 * stepCounter / length;
-    	sb = sb + counter + "|" + length + "|" + rate + "%" +  "\n" ;
+    	sb = sb + counter + "," + length + "," + rate + "%" +  "\n" ;
     	System.out.print(sb);
     	try{
-    	    RepeatAstarAgent.Record("record/",getClass().getName(),sb);
+    	    RepeatAstarAgent.Record("record/",getClass().getSimpleName(),sb);
     	}
     	catch(IOException e){
     		
@@ -333,7 +334,7 @@ public class RepeatAstarAgent extends Agent {
     	 
          try {
         	 
-        	 File file = new File(filename+mapName+ManagementFactory.getRuntimeMXBean().getStartTime());  
+        	 File file = new File(filename+mapName+ManagementFactory.getRuntimeMXBean().getStartTime()+".csv");  
         	 if(!file.exists()){
         		 file.createNewFile();
         	 }
