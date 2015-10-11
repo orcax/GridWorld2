@@ -45,6 +45,8 @@ public class RepeatAstarAgent extends Agent {
     
     protected State[][] states;
     
+    protected int totalValid;
+    protected int totalPlan;
     
     Map<State,Integer> cost;
     Map<State,Integer> estimate;
@@ -82,9 +84,13 @@ public class RepeatAstarAgent extends Agent {
     	exploreCounter = 0;
     	stepCounter = 0;
     	
+    	totalValid = 0;
+    	
     	
     	for(int i = 0; i < rows; i++){
     		for(int j = 0; j < cols; j++){
+    			
+    		
     			states[i][j] = new State(i,j,cells[i][j]);
     			//System.out.print(cells[i][j] + "|");
     			states[i][j].SetStatus(false);
@@ -115,10 +121,7 @@ public class RepeatAstarAgent extends Agent {
             }});
     
     	*/
-    	open = new BinaryHeap<State>(new Comparator<State>() { 
-            public int compare(State s1, State s2) {
-                return s2.getExpectValue() - s1.getExpectValue();
-            }});
+    	initHeapCompareFunction();
     	
     	close = new HashSet<State>();
     	
@@ -126,6 +129,22 @@ public class RepeatAstarAgent extends Agent {
     	grid = getGrid();
     	
     }
+    
+    protected void initHeapCompareFunction2(){
+    	open = new BinaryHeap<State>(new Comparator<State>() { 
+            public int compare(State s1, State s2) {
+                return s2.getExpectValue() - s1.getExpectValue();
+            }});
+    }
+
+    
+    protected void initHeapCompareFunction(){
+    	open = new BinaryHeap<State>(new Comparator<State>() { 
+            public int compare(State s1, State s2) {
+                return (s2.getExpectValue()*256 - cost.get(s2)) - (s1.getExpectValue()*256 - cost.get(s1));
+            }});
+    }
+
     
     public void updateExplore(){
     	
@@ -215,26 +234,55 @@ public class RepeatAstarAgent extends Agent {
     			+"|" + stepCounter + "\n";
     	System.out.print(sb);
     	try{
-    	    record("record/",getClass().getName(),sb);
+    		 RepeatAstarAgent.Record("record/",getClass().getName(),sb);
     	}
     	catch(IOException e){
     		
     	}
     }
     
+    public int getTotalExpand(){
+    	return expandCounter;
+    }
+    public int getTotalCounter(){
+    	return counter;
+    }
+    public int getTotalexplore(){
+    	return exploreCounter;
+    }
+    
+    
+    public static void FinalRecord(int expand,int explore,int avg_expand, int avg_explore,int counter,int rate,String className){
+    	
+    	String sb = expand+"|"+avg_expand+"|"+explore+"|"+avg_explore+"|"+counter+"|"+rate+"%";
+    	try{
+    		 RepeatAstarAgent.Record("record/",className,sb);
+    	}
+    	catch(IOException e){
+    		
+    	}
+    }
+    
+    int rate;
+    public int getRate(){
+    	return rate;
+    }
+    
     protected void success(){
     	end = true;
     	//success|total expandCounter|total exploreCounter|total step|right path long
-    	String sb = "S|" + expandCounter
-    			+"|" + exploreCounter
+    	int avgExpand = expandCounter / counter;
+    	int avgExplore = exploreCounter / counter;
+    	String sb = "S|" + expandCounter +"|" + avgExpand
+    			+"|" + exploreCounter + "|" + avgExplore
     			+"|" + stepCounter 
     			+ "|";
     	int length = findOriginalPathLength();
-    	int rate = 100 * stepCounter / length;
-    	sb = sb + length + "|" + rate + "%" +  "\n" ;
+    	rate = 100 * stepCounter / length;
+    	sb = sb + counter + "|" + length + "|" + rate + "%" +  "\n" ;
     	System.out.print(sb);
     	try{
-    	    record("record/",getClass().getName(),sb);
+    	    RepeatAstarAgent.Record("record/",getClass().getName(),sb);
     	}
     	catch(IOException e){
     		
@@ -248,10 +296,13 @@ public class RepeatAstarAgent extends Agent {
     
     protected int findOriginalPathLength(){
     	current = start;
-    	
+    	totalValid = 0;
     	for(int k = 0; k < rows; k++){
     		for(int j = 0; j < cols; j++){
     			states[k][j].SetStatus(true);
+    			if(states[k][j].canMove()){
+    				totalValid++;
+    			}
     		}
     	}
     	clear();
@@ -276,7 +327,7 @@ public class RepeatAstarAgent extends Agent {
     	
     }
     
-    protected void record(String filename, String mapName,String content) throws IOException{
+    protected static void Record(String filename, String mapName,String content) throws IOException{
     	FileWriter fw = null; 
     	PrintWriter pw = null;
     	 

@@ -21,6 +21,7 @@ public class State {
 	private boolean canMove;
 	//private int expectCost;
 	
+	//expect|row|cow(12|10|10)
 	private int seq;
 	
 	

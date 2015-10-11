@@ -16,7 +16,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
 	
 	protected boolean computePath(){
     	//System.out.println("repeat forward");
-    	
+		
     	counter++;
     	
   
@@ -34,7 +34,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     	close.clear();
     	/////
     	
-    	current.setExpectValue(manhattanDistance(current,goal),cost.get(current));
+    	current.setExpectValue(manhattanDistance(current,goal)+cost.get(current));
     	open.add(current);
     	
     	tree.put(current, new TreeNode<State>(current));
@@ -77,7 +77,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
 	    			curNode.addChild(child);
 	    			tree.put(succ, child);
     				
-    				succ.setExpectValue(manhattanDistance(succ,goal),cost.get(succ));
+    				succ.setExpectValue(manhattanDistance(succ,goal)+cost.get(succ));
     				if(open.contains(succ)){
     					open.remove(succ);
     				}

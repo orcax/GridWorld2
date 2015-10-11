@@ -2,10 +2,12 @@ package edu.rudcs.gridworld.agent;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import edu.rudcs.gridworld.util.BinaryHeap;
 import edu.rudcs.gridworld.util.State;
 import edu.rudcs.gridworld.util.TreeNode;
 import info.gridworld.actor.Actor;
@@ -18,8 +20,14 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
 		super(start, goal, cells, rows, cols);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+	/*
+	protected void initHeapCompareFunction(){
+		open = new BinaryHeap<State>(new Comparator<State>() { 
+            public int compare(State s1, State s2) {
+                return (s2.getExpectValue() * 256 - cost.get(current) + cost.get(s2)) - (s1.getExpectValue()*256 - cost.get(current) + cost.get(s1));
+            }});
+	}
+	*/
 	protected boolean computePath(){
 		//System.out.println("repeat backward");
 		
@@ -37,7 +45,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     	close.clear();
     	/////
     	
-    	goal.setExpectValue(manhattanDistance(goal,current),cost.get(goal));
+    	goal.setExpectValue(manhattanDistance(goal,current)+cost.get(goal));
     	open.add(goal);
     	
     	tree.put(goal, new TreeNode<State>(goal));
@@ -76,7 +84,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     				TreeNode<State> child = new TreeNode<State>(succ);
     				curNode.addChild(child);
     				tree.put(succ, child);
-    				succ.setExpectValue(manhattanDistance(succ,current),cost.get(succ));
+    				succ.setExpectValue(manhattanDistance(succ,current)+cost.get(succ));
     				if(open.contains(succ)){
     					open.remove(succ);
     				}
