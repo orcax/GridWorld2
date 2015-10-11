@@ -121,7 +121,7 @@ public class RepeatAstarAgent extends Agent {
             }});
     
     	*/
-    	initHeapCompareFunction();
+    	initHeapCompareFunction2();
     	
     	close = new HashSet<State>();
     	

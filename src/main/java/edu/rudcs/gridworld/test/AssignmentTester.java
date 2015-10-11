@@ -8,7 +8,8 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
 public class AssignmentTester {
     
-	public int MAP_COUNT = 100;
+	public int MAP_COUNT = 1000;
+	public String MAP_NAME = "maps/randmazes/";
 	
     public void testRepeatForwardAstar() {
     	int expand = 0; 
@@ -19,7 +20,7 @@ public class AssignmentTester {
     	int rate = 0;
         for (int i = 1; i <= MAP_COUNT; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-            map.loadMap("maps/randmazes/" + i + ".txt");
+            map.loadMap(MAP_NAME + i + ".txt");
             RepeatForwardAstarAgent agent = new RepeatForwardAstarAgent(map.getStarts().get(0),
                     map.getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
@@ -48,7 +49,7 @@ public class AssignmentTester {
     	int avg_explore = 0;
         for (int i = 1; i <= MAP_COUNT; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-            map.loadMap("maps/randmazes/" + i + ".txt");
+            map.loadMap(MAP_NAME + i + ".txt");
             RepeatBackwardAstarAgent agent = new RepeatBackwardAstarAgent(map.getStarts().get(0),
                     map.getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
@@ -79,7 +80,7 @@ public class AssignmentTester {
     	int totalcounter = 0;
         for (int i = 1; i <= MAP_COUNT; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-            map.loadMap("maps/randmazes/" + i + ".txt");
+            map.loadMap(MAP_NAME + i + ".txt");
             AdaptiveAstarAgent agent = new AdaptiveAstarAgent(map.getStarts().get(0), map
                     .getGoals().get(0), map.getCells(), map.getRows(),
                     map.getColumn());
@@ -103,9 +104,9 @@ public class AssignmentTester {
 
     public static void main(String[] args) {
         AssignmentTester at = new AssignmentTester();
-        at.testRepeatForwardAstar();
+      //  at.testRepeatForwardAstar();
         at.testRepeatBackwardAstar();
-        at.testAdaptiveAstar();
+      //  at.testAdaptiveAstar();
     }
 
 }
