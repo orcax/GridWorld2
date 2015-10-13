@@ -9,10 +9,10 @@ import edu.rudcs.gridworld.agent.RepeatBackwardAstarAgent;
 import edu.rudcs.gridworld.agent.RepeatForwardAstarAgent;
 import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
-public class AssigmentUITester {
+public class AssignmentUITester {
 	
 	public static void main(String[] args){
-		AssigmentUITester at = new AssigmentUITester();
+		AssignmentUITester at = new AssignmentUITester();
 		RunRepeatAstarAgent.runRepeatAstarAgent("forward", "maps/randmazes/1.txt");
 		RunRepeatAstarAgent.runRepeatAstarAgent("backward", "maps/randmazes/1.txt");
 		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", "maps/randmazes/1.txt");
