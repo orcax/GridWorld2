@@ -57,6 +57,7 @@ public class State {
     	seq = seq&ROWCOL;
     	seq = seq|((total<<EXP_LENGTH)&EXPECT);
     }
+    
     public void setExpectBackValue(int estimate, int cost){
     	//this.expectCost = 300*(estimate+cost) - estimate;
     	int total = 4*(estimate+cost) - cost;

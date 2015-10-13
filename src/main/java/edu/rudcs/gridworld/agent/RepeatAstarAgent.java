@@ -121,7 +121,7 @@ public class RepeatAstarAgent extends Agent {
             }});
     
     	*/
-    	initHeapCompareFunction2();
+    	initHeapCompareFunction();
     	
     	close = new HashSet<State>();
     	
@@ -130,13 +130,6 @@ public class RepeatAstarAgent extends Agent {
     	
     }
     
-    protected void initHeapCompareFunction2(){
-    	open = new BinaryHeap<State>(new Comparator<State>() { 
-            public int compare(State s1, State s2) {
-                return s2.getExpectValue() - s1.getExpectValue();
-            }});
-    }
-
     
     protected void initHeapCompareFunction(){
     	open = new BinaryHeap<State>(new Comparator<State>() { 

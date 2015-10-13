@@ -47,10 +47,10 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     		
     		TreeNode<State> curNode = tree.get(s);;
     		
-    		/////
+    		/*
     		if(close.contains(s)){
 				continue;
-			}	
+			}	*/
 			close.add(s);
 			expandCounter++;
 			showExplore(s);
@@ -68,7 +68,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     		    	search.put(succ, counter);
     			}
     			
-    		
+    		    
     			
     			if(cost.get(succ) > cost.get(s) + PACECOST){
     				cost.put(succ,cost.get(s) + PACECOST);
