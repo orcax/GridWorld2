@@ -16,11 +16,11 @@ public class AssignmentUITester {
 	public static void main(String[] args){
 		AssignmentUITester at = new AssignmentUITester();
 		RunRepeatAstarAgent.runRepeatAstarAgent("forward", map);
-		RunRepeatAstarAgent.runRepeatAstarAgent("backward", map);
-		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", map);
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", map);
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", map);
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("backward", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", map);
 		//at.runRepeatAstarAgent();
 	}
 

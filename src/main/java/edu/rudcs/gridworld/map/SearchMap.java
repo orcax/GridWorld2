@@ -129,6 +129,10 @@ public class SearchMap {
         return objects.containsKey(ActorType.START) ? objects
                 .get(ActorType.START) : null;
     }
+    
+    public void setTitle(String title) {
+        world.setMessage(title);
+    }
 
     public void show() {
         if (world != null) {
