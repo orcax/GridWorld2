@@ -253,8 +253,8 @@ public class GridPanel extends JPanel implements Scrollable,
             Point p = pointForLocation(currentLocation);
             g2.drawRect(p.x - cellSize / 2 - 2, p.y - cellSize / 2 - 2,
                     cellSize + 3, cellSize + 3);
-            g2.drawString("CURRENT LOC", p.x - cellSize / 2, p.y - cellSize / 2
-                    + 12);
+            // g2.drawString("CURRENT LOC", p.x - cellSize / 2, p.y - cellSize /
+            // 2 + 12);
         }
     }
 
