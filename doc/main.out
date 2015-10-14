@@ -3,8 +3,10 @@
 \BOOKMARK [2][-]{subsection.0.2}{How to Run}{section.0}% 3
 \BOOKMARK [2][-]{subsection.0.3}{Maze Generation Algorithm}{section.0}% 4
 \BOOKMARK [1][-]{section.1}{Understanding the Methods}{}% 5
-\BOOKMARK [1][-]{section.2}{The Effects of Ties}{}% 6
-\BOOKMARK [1][-]{section.3}{Forward vs. Backward}{}% 7
-\BOOKMARK [1][-]{section.4}{Heuristics in the Adaptive A*}{}% 8
-\BOOKMARK [1][-]{section.5}{Heuristics in the Adaptive A*}{}% 9
-\BOOKMARK [1][-]{section.6}{Memory Issues}{}% 10
+\BOOKMARK [2][-]{subsection.1.1}{Problem A}{section.1}% 6
+\BOOKMARK [2][-]{subsection.1.2}{Problem B}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{The Effects of Ties}{}% 8
+\BOOKMARK [1][-]{section.3}{Forward vs. Backward}{}% 9
+\BOOKMARK [1][-]{section.4}{Heuristics in the Adaptive A*}{}% 10
+\BOOKMARK [1][-]{section.5}{Heuristics in the Adaptive A*}{}% 11
+\BOOKMARK [1][-]{section.6}{Memory Issues}{}% 12
