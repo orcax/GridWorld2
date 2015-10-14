@@ -25,6 +25,7 @@ public class Agent extends Actor {
     public Agent() {
         //setColor(new Color(0, 221, 0));
         setColor(Color.RED);
+        /*
         try {
             FileHandler fileHander = new FileHandler("log/" + new Date());
             log.addHandler(fileHander);
@@ -35,7 +36,7 @@ public class Agent extends Actor {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
     }
 
     protected void info(Object format, Object... args) {
