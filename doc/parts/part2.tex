@@ -66,8 +66,8 @@ indiates that the move part of raw RFA* is more likely to approach optimal.
 
 To explain in detail, let's introduce a simple example as shown in figure
 \ref{fig:p2-example}. It is a $5\times 5$ grid map where the start cell is at
-$(A,1)$ and the goal cell is at $(E,5)$.  We can see that Raw RFA* in Figure
-\ref{fig:rawforward} almost expands all cells on the map while Modified RFA* in
+$(A,1)$ and the goal cell is at $(E,5)$.  We can see that raw RFA* in Figure
+\ref{fig:rawforward} almost expands all cells on the map while modified RFA* in
 Figure \ref{fig:newforward} only expands some useful cells. The reason for this
 difference depends on the way they break ties. In Figure \ref{fig:rawforward},
 the algorithm only use $f$-value to determine the order of expansion which
@@ -76,11 +76,11 @@ neighbors $(A,2)$ and $(B,1)$, whose $g$-values are both set as 1, $h$-values
 are 7 and $f$-values are 8. The next node to expand is either $(A,2)$ or
 $(B,1)$, so without loss of generality, let's pick $(B,1)$. After that, cell
 $(C,1)$ is explored whose $g=2$, $h=6$ and $f=8$. (Just forget $(B,2)$
-temporarily.) It has the same $f$-value as $(A,2)$.  In this case, Raw RFA*
+temporarily.) It has the same $f$-value as $(A,2)$.  In this case, raw RFA*
 will pick one arbitrarily, and if it picks $(A,2)$, $(A,3)$ will be explored.
-But for Modified RFA*, it will inspect $g$ value to break ties between $(A,2)$
+But for modified RFA*, it will inspect $g$ value to break ties between $(A,2)$
 and $(C,1)$ and pick the cell with smaller $g$, that is $(C,1)$. Repeatedly,
-Modified RFA* will expand much less cells than Raw RFA*. Therefore, this is the
+modified RFA* will expand much less cells than raw RFA*. Therefore, this is the
 effect of breaking ties by using $c\times f-g$ value.
 
 \begin{figure}[t]
@@ -93,13 +93,13 @@ effect of breaking ties by using $c\times f-g$ value.
   ~
   \begin{subfigure}[b]{0.30\textwidth}
     \includegraphics[width=\textwidth]{p2-rawforward}
-    \caption{RFA* breaking ties by $f$}
+    \caption{Raw RFA* breaking ties by $f$}
     \label{fig:rawforward}
   \end{subfigure}
   ~
   \begin{subfigure}[b]{0.30\textwidth}
     \includegraphics[width=\textwidth]{p2-newforward}
-    \caption{RFA* breaking ties by $(c\times f-g)$}
+    \caption{Modified RFA* breaking ties by $(c\times f-g)$}
     \label{fig:newforward}
   \end{subfigure}
 \caption{Results of two versions of Repeated Forward A*}
