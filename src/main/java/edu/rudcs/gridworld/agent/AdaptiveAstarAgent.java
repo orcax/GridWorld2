@@ -36,6 +36,8 @@ public class AdaptiveAstarAgent extends RepeatAstarAgent {
 	protected boolean computePath(){
     	//System.out.println("repeat forward");
     	
+		clearColor();
+		
     	counter++;
     	
     	tree.clear();
