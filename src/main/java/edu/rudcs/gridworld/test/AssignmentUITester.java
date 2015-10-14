@@ -11,7 +11,7 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
 public class AssignmentUITester {
 	
-	public static final String map = "maps/map5.txt";
+	public static final String map = "maps/randmazes/1.txt";
 	
 	public static void main(String[] args){
 		AssignmentUITester at = new AssignmentUITester();
