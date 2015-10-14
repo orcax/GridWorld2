@@ -12,14 +12,11 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 public class RunRepeatAstarAgent {
 	  public static void runRepeatAstarAgent(String name,String mapName) {
 	        RepeatAstarSearchMap map = new RepeatAstarSearchMap();
-
-
 	        map.loadMap(mapName);
-
 	        Agent agent = getRepeatAgent(name, map);
-
 	        map.loadAgent(agent);
 	        map.loadWorld();
+	        map.setTitle(agent.getClass().getSimpleName());
 	        map.show();
 	    }
 
