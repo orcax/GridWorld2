@@ -31,6 +31,8 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
 	protected boolean computePath(){
 		//System.out.println("repeat backward");
 		
+		
+		
         counter++;
        	
     	cost.put(current, Integer.MAX_VALUE);

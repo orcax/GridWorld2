@@ -292,6 +292,7 @@ public class RepeatAstarAgent extends Agent {
     protected void clear(){
     	tree.clear();
     	
+    	
     }
     
     protected int findOriginalPathLength(){
@@ -545,6 +546,14 @@ public class RepeatAstarAgent extends Agent {
     	
     }
     
-
+    protected void clearColor(){
+    	for(int i = 0; i < rows; i++){
+    		for(int j = 0; j < cols; j++){
+    	    	grid = getGrid();
+    	    	grid.putColor(new Location(states[i][j].getRow(),states[i][j].getCol()), Color.WHITE);
+    		}
+    		
+    	}
+    }
 
 }

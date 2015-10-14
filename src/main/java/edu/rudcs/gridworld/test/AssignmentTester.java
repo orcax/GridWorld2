@@ -12,8 +12,8 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
 public class AssignmentTester {
     
-	public int MAP_COUNT = 1000;
-	public String MAP_NAME = "maps/randmaps/";
+	public int MAP_COUNT = 100;
+	public String MAP_NAME = "maps/randmazes/";
 	
     public void testRepeatAstar(String name) {
     	int expand = 0; 
@@ -145,8 +145,8 @@ public class AssignmentTester {
         at.testRepeatAstar("forward");
         at.testRepeatAstar("backward");
         at.testRepeatAstar("adaptive");
-       // at.testRepeatAstar("Rawforward");
-       // at.testRepeatAstar("Rawbackward");
+        //at.testRepeatAstar("Rawforward");
+        //at.testRepeatAstar("Rawbackward");
         //at.testRepeatAstar("Rawadaptive");
        // at.testRepeatBackwardAstar();
       //  at.testAdaptiveAstar();
