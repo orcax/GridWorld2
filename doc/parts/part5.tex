@@ -8,8 +8,16 @@ break ties among cells with the same f-value in favor of cells with larger
 g-values and remaining ties in an identical way, for example randomly.
 
 \paragraph{Solution}
+Firstly, we use 50 maps of size $101\times 101$ with discrete obstacles to
+evaluate performance of two algorithms. The result is shown in Table
+\ref{tbl:rpa-rtaa} and complete experimental data for RTAA* is listed in
+Appendix C. As we can see, the average number of cells expanded per map in RFA*
+is almost equivalent to that in RTAA* (Real-Time Adaptive A*).  Moreover, rest
+of evaluation indexes also reflect no significant difference between these
+algorithms. Therefore, can we draw the conclusion that the running time of
+RTAA* is approximately equal to RFA*?
 
-\begin{table}[h!]
+\begin{table}[ht]
 \centering
 \caption{Result of Repeated Forward A* and Adaptive A* in Maps}
 \begin{tabular}{|l|l|l|l|l|}
@@ -30,7 +38,24 @@ RTAA* & 367 & 96.18 & 198.6 & 1.843 \\
 \label{tbl:rpa-rtaa}
 \end{table}
 
-\begin{table}[h!]
+THE ANSWER IS NO!!!
+
+And this is why we generate another kind of gridworld, namely the maze. As
+previously said, any maze in this case is always a connected undirected graph,
+so the optimal path from start to goal is quite long, full of twists and turns.
+It is this characteristic of maze that favors the RTAA* to performs better than
+RFA*. The result is shown in Table \ref{tbl:rpa-rtaa2}, and complete
+experimental data is listed in Appendix C. The average number of expanded cells
+in each map for RTAA* is about 22.3\% less than that for RFA*, and the average
+number of expanded cells in each planning for RTAA* is about 19.09\% less than
+that for RFA*. Meanwhile, the average number of explored cells for RTAA* is
+almost the same as that for RFA* because both algorithms will place all
+successors into $OPEN$ list. The average number of moves either in each map or
+in each planning for RTAA* is 9.3\% larger than that for RFA*. Compared this
+ratio to that of expanded cells, we can find RTAA* performs better in running
+time of expansion by sacrificing a little bit more moving around.
+
+\begin{table}[ht]
 \centering
 \caption{Result of Repeated Forward A* and Adaptive A* in Mazes}
 \begin{tabular}{|l|l|l|l|l|}
@@ -48,5 +73,21 @@ RFA* & 2848.6 & 932.54 & 1078.48 & 2.87 \\
 RTAA* & 2854.56 & 929.44 & 1078.48 & 2.8758 \\
 \hline
 \end{tabular}
-\label{tbl:rpa-rtaa}
+\label{tbl:rpa-rtaa2}
 \end{table}
+
+The advantage of RTAA* lies in its constant update for heuristic value of
+expanded states. The heuristics of the same state in different plannings are
+monotonically nondecreasing over time, and thus become more
+informed\cite{koenig2006real}. Since in every iteration, the algorithm will
+choose the cell with the smallest $f$-value in the $OPEN$ list, the cell 
+with updated larger heuristic, namely larger $f$-value, implies that it will be 
+less probable to be extracted from the $OPEN$ list. Instead, some other cell may be 
+firstly selected by RTAA*, which is selected later by RFA*. On the other hand,
+the heuristic value in RTAA* can be regarded composed of two parts. The first 
+part is calculated according to from gained knowledge in previous planning,
+and the second the part is the ordinary estimate goal distance, like Manhattan
+distance in the case. The first part can benefit RTAA* from selecting a more 
+informed cell from $OPEN$ list, so that less nodes are needed to be expanded,
+whereas RFA* expands more redundant cells during planning.
+
