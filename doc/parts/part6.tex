@@ -1,5 +1,18 @@
 \section{Memory Issues}
-\textbf{Solution:}The data structure of states in our project show below.\\
+
+\paragraph{Problem}
+You performed all experiments in gridworlds of size $101\times 101$ but some
+real-time computer games use maps whose number of cells is up to two orders of
+magnitude larger than that. It is then especially important to limit the amount
+of information that is stored per cell. For example, the tree-pointers can be
+implemented with only two bits per cell. Suggest additional ways to reduce the
+memory consumption of your implementations further. Then, calculate the amount
+of memory that they need to operate on gridworlds of size $1001\times 1001$ and
+the largest gridworld that they can operate on within a memory limit of 4
+MBytes.
+
+\paragraph{Solution}
+The data structure of states in our project show below.
 
 \begin{tabular}{|l|l|l|l|}
 \hline

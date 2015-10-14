@@ -14,6 +14,10 @@
 \usepackage{inconsolata}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{hhline}
 
 \title{%
 \textbf{$\S$CS 520: Assignment 1 } \\
@@ -77,5 +81,10 @@ Rutgers University, New Brunswick, NJ \\
 \bibliographystyle{plain}
 \bibliography{main}
 \nocite{*}
+\clearpage
+
+\appendix
+\titleformat{\section}{\Large\bfseries}{Appendix \thesection}{1em}{}
+\input{parts/appendix}
 
 \end{document}
