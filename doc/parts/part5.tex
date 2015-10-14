@@ -8,3 +8,45 @@ break ties among cells with the same f-value in favor of cells with larger
 g-values and remaining ties in an identical way, for example randomly.
 
 \paragraph{Solution}
+
+\begin{table}[h!]
+\centering
+\caption{Result of Repeated Forward A* and Adaptive A* in Maps}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Algorithm & Aver. Expa/M & aver. Expa/P & Aver. Expl/M & Aver. Expl/P \\
+\hline
+RFA* & 8847.88 & 92.44 & 25461.42 & 267.68 \\
+\hline
+RTAA* & 8749.2 & 91.32 & 25413.66 & 266.72 \\
+\hhline{|=|=|=|=|=|}
+Algorithm & Aver. Moves & Aver. Count & Aver. Optimal & Aver. Ratio \\
+\hline
+RFA* & 335.72 & 88.2 & 198.6 & 1.6852 \\
+\hline
+RTAA* & 367 & 96.18 & 198.6 & 1.843 \\
+\hline
+\end{tabular}
+\label{tbl:rpa-rtaa}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Result of Repeated Forward A* and Adaptive A* in Mazes}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Algorithm & Aver. Expa/M & aver. Expa/P & Aver. Expl/M & Aver. Expl/P \\
+\hline
+RFA* & 148454.72 & 148.32 & 338600.96 & 349.84 \\
+\hline
+RTAA* & 115318.38 & 120 & 301468.68 & 319.16 \\
+\hhline{|=|=|=|=|=|}
+Algorithm & Aver. Moves & Aver. Count & Aver. Optimal & Aver. Ratio \\
+\hline
+RFA* & 2848.6 & 932.54 & 1078.48 & 2.87 \\
+\hline
+RTAA* & 2854.56 & 929.44 & 1078.48 & 2.8758 \\
+\hline
+\end{tabular}
+\label{tbl:rpa-rtaa}
+\end{table}

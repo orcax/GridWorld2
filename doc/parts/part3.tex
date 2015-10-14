@@ -9,3 +9,24 @@ with the same f-value in favor of cells with larger g-values and remaining ties
 in an identical way, for example randomly.
 
 \paragraph{Solution}
+
+\begin{table}[h!]
+\centering
+\caption{Result of Repeated Forward A* and Repeated Backward A*}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Algorithm & Aver. Expa/M & aver. Expa/P & Aver. Expl/M & Aver. Expl/P \\
+\hline
+RFA* & 8847.88 & 92.44 & 25461.42 & 267.68 \\
+\hline
+RBA* & 133043 & 1272.54 & 266050.76 & 2551.44 \\
+\hhline{|=|=|=|=|=|}
+Algorithm & Aver. Moves & Aver. Count & Aver. Optimal & Aver. Ratio \\
+\hline
+RFA* & 335.72 & 88.2 & 198.6 & 1.6852 \\
+\hline
+RBA* & 390.88 & 103.4 & 198.6 & 1.9626 \\
+\hline
+\end{tabular}
+\label{tbl:rpa-rba}
+\end{table}

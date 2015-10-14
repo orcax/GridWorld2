@@ -1,11 +1,41 @@
-\section{Part 2 - Data}
+\section{Experimental Result in Part 2}
 
-The following table shows the result of Repeated Forward A* with $f$-value to
-break ties:
+The following data shows the result of Repeated Forward A* that breaks ties by
+$f$-value, running on 50 gridworlds of size $101\times 101$ with discrete
+obstacles.
 
-\csvautobooklongtable{data/p2-raw.csv}
+\csvautobooklongtable{data/raw-forward-map.csv}
 
-The following table shows the result of Repeated Forward A* with $c\times f-g$
-to break ties:
+The following data shows the result of Repeated Forward A* that breaks ties by
+$c\times f-g$ value, running on 50 gridworlds of size $101\times 101$ with
+discrete obstacles.
 
-\csvautobooklongtable{data/p2-new.csv}
+\csvautobooklongtable{data/forward-map.csv}
+
+\clearpage
+\section{Experimental Result in Part 3}
+
+The following data shows the result of Repeated Backward A* that breaks ties by
+$c\times f-g$ value, running on 50 gridworlds of size $101\times 101$ with
+discrete obstacles.
+
+\csvautobooklongtable{data/backward-map.csv}
+
+\clearpage
+\section{Experimental Result in Part 5}
+
+The following data shows the result of Adaptive A* that breaks ties by $c\times
+f-g$ value, running on 50 gridworlds of size $101\times 101$ with discrete
+obstacles.
+
+\csvautobooklongtable{data/adaptive-map.csv}
+
+The following data shows the result of Repeated Forward A* that breaks ties by
+$c\times f-g$ value, running on 50 mazes of size $101\times 101$. 
+
+\csvautobooklongtable{data/forward-maze.csv}
+
+The following data shows the result of Adaptive A* that breaks ties by $c\times
+f-g$ value, running on 50 mazes of size $101\times 101$. 
+
+\csvautobooklongtable{data/adaptive-maze.csv}
