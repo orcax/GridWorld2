@@ -11,14 +11,16 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
 public class AssignmentUITester {
 	
+	public static final String map = "maps/map5.txt";
+	
 	public static void main(String[] args){
 		AssignmentUITester at = new AssignmentUITester();
-		RunRepeatAstarAgent.runRepeatAstarAgent("forward", "maps/randmazes/1.txt");
-		RunRepeatAstarAgent.runRepeatAstarAgent("backward", "maps/randmazes/1.txt");
-		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", "maps/randmazes/1.txt");
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", "maps/randmazes/1.txt");
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", "maps/randmazes/1.txt");
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", "maps/randmazes/1.txt");
+		RunRepeatAstarAgent.runRepeatAstarAgent("forward", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("backward", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", map);
 		//at.runRepeatAstarAgent();
 	}
 

@@ -22,6 +22,7 @@ public class AssignmentTester {
     	int avg_explore = 0;
     	int totalcounter = 0;
     	int rate = 0;
+    	int succ = 0;
         for (int i = 1; i <= MAP_COUNT; i++) {
             RepeatAstarSearchMap map = new RepeatAstarSearchMap();
             map.loadMap(MAP_NAME + i + ".txt");
@@ -31,15 +32,18 @@ public class AssignmentTester {
             map.run();
             System.out.println(i);
             
-            int counter = agent.getTotalCounter();
-            totalcounter += counter;
-            expand += agent.getTotalExpand();
-            explore += agent.getTotalexplore();
-            avg_expand += agent.getTotalExpand()/counter;
-            avg_explore += agent.getTotalexplore()/counter;
-            rate += agent.getRate();
+            if(agent.getStatus()){
+            	succ++;
+                int counter = agent.getTotalCounter();
+                totalcounter += counter;
+                expand += agent.getTotalExpand();
+                explore += agent.getTotalexplore();
+                avg_expand += agent.getTotalExpand()/counter;
+                avg_explore += agent.getTotalexplore()/counter;
+                rate += agent.getRate();
+            }
         }
-        RepeatAstarAgent.FinalRecord(expand/MAP_COUNT,explore/MAP_COUNT,avg_expand/MAP_COUNT, avg_explore/MAP_COUNT,totalcounter/MAP_COUNT, rate/MAP_COUNT, name);
+        RepeatAstarAgent.FinalRecord(expand/succ,explore/succ,avg_expand/succ, avg_explore/succ,totalcounter/succ, rate/succ, name);
     }
 
     /*
@@ -141,9 +145,9 @@ public class AssignmentTester {
         at.testRepeatAstar("forward");
         at.testRepeatAstar("backward");
         at.testRepeatAstar("adaptive");
-        at.testRepeatAstar("Rawforward");
-        at.testRepeatAstar("Rawbackward");
-        at.testRepeatAstar("Rawadaptive");
+       // at.testRepeatAstar("Rawforward");
+       // at.testRepeatAstar("Rawbackward");
+        //at.testRepeatAstar("Rawadaptive");
        // at.testRepeatBackwardAstar();
       //  at.testAdaptiveAstar();
     }

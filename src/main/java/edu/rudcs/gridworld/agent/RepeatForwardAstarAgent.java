@@ -56,21 +56,22 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
 			showExplore(s);
 			/////
     		
-    		List<State> successors = getRandSuccesors(s);
+    		List<State> successors = getSuccesors(s);
     		
     		for(State succ : successors){
     			
     			
-    			exploreCounter++;
+    			
     			
     			if(!search.containsKey(succ) || search.get(succ) < counter ){
     				cost.put(succ, Integer.MAX_VALUE);
     		    	search.put(succ, counter);
     			}
     			
-    		    
+    			
     			
     			if(cost.get(succ) > cost.get(s) + PACECOST){
+    				exploreCounter++;
     				cost.put(succ,cost.get(s) + PACECOST);
     				
 	    			TreeNode<State> child = new TreeNode<State>(succ);
@@ -83,6 +84,7 @@ public class RepeatForwardAstarAgent extends RepeatAstarAgent {
     				}
     				open.add(succ);
     			}
+    			
     			
     		}
     		

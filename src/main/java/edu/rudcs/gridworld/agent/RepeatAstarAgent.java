@@ -85,7 +85,7 @@ public class RepeatAstarAgent extends Agent {
     	stepCounter = 0;
     	
     	totalValid = 0;
-    	
+    	bSuccess = false;
     	
     	for(int i = 0; i < rows; i++){
     		for(int j = 0; j < cols; j++){
@@ -262,8 +262,14 @@ public class RepeatAstarAgent extends Agent {
     	return rate;
     }
     
+    private boolean bSuccess;
+    public boolean getStatus(){
+    	return bSuccess;
+    }
+    
     protected void success(){
     	end = true;
+    	bSuccess = true;
     	//success|total expandCounter|total exploreCounter|total step|right path long
     	int avgExpand = expandCounter / counter;
     	int avgExplore = exploreCounter / counter;
@@ -525,7 +531,7 @@ public class RepeatAstarAgent extends Agent {
     }
     
     protected void showExplore(State s){
-    	
+    	if(end == true) return;
     	grid = getGrid();
     	grid.putColor(new Location(s.getRow(),s.getCol()), Color.green);
     	

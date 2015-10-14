@@ -54,7 +54,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     		//System.out.println("mahatton of s:"+s.getExpectValue());
     		//System.out.println("cost of current:" + cost.get(current));
     		TreeNode<State> curNode = tree.get(s);
-    		List<State> successors = getRandSuccesors(s);
+    		List<State> successors = getSuccesors(s);
     		
     		////
     		if(close.contains(s)){
@@ -69,7 +69,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     		
     		for(State succ : successors){
     			/////
-    			exploreCounter++;
+    			
     			/////
     			
     			if(!search.containsKey(succ) || search.get(succ) < counter ){
@@ -80,6 +80,7 @@ public class RepeatBackwardAstarAgent extends RepeatAstarAgent {
     		
     			
     			if(cost.get(succ) > cost.get(s) + PACECOST){
+    				exploreCounter++;
     				cost.put(succ,cost.get(s) + PACECOST);
     				TreeNode<State> child = new TreeNode<State>(succ);
     				curNode.addChild(child);
