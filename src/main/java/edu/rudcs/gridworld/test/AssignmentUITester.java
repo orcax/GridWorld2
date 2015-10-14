@@ -13,23 +13,25 @@ public class AssignmentUITester {
 	
 	public static final String map1 = "maps/map7.txt";
 	public static final String map2 = "maps/randmazes/1.txt";
+	public static final String map3 = "maps/randmaps/1.txt";
 	
 	public static void main(String[] args){
-		AssignmentUITester at = new AssignmentUITester();
-		RunRepeatAstarAgent.runRepeatAstarAgent("forward", map1);
-		//RunRepeatAstarAgent.runRepeatAstarAgent("backward", map1);
-		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", map1);
-		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", map1);
-		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", map1);
-		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", map1);
-		/*
-		RunRepeatAstarAgent.runRepeatAstarAgent("forward", map2);
-		RunRepeatAstarAgent.runRepeatAstarAgent("backward", map2);
-		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", map2);
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", map2);
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", map2);
-		RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", map2);*/
+		//AssignmentUITester at = new AssignmentUITester();
+	
+		run(map1);
+		run(map2);
+		run(map3);
+		
 		//at.runRepeatAstarAgent();
+	}
+	
+	private static void run(String map){
+		RunRepeatAstarAgent.runRepeatAstarAgent("forward", map);
+	    RunRepeatAstarAgent.runRepeatAstarAgent("backward", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("adaptive", map);
+		RunRepeatAstarAgent.runRepeatAstarAgent("Rawforward", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawbackward", map);
+		//RunRepeatAstarAgent.runRepeatAstarAgent("Rawadaptive", map);
 	}
 
 }
