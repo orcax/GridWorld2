@@ -16,7 +16,7 @@ The data structure of states in our project show below.
 
 \begin{tabular}{|l|l|l|l|}
 \hline
-\multicolumn{4}{|c|}{state}\\
+\multicolumn{4}{|c|}{State}\\
 \hline
 type&name&bits&description\\
 \hline
@@ -30,23 +30,40 @@ Boolean&canMove&1&reflect whether the cell of this state is viable\\
 \hline
 \end{tabular}\\
 
-Denote s as the the space of each state, S as the space of the array of states.Using this data structure, s = 22 bits. In the map of size 1001 $\times$ 1001, then
+Let's denote $n$ as the memory size of each state and $N$ as the memory size of
+the array of states. In this data structure, $n = 22$ bits. In the map of size
+$1001 \times 1001$, then
+
 \begin{equation*}
-  \begin{aligned}
-   &S = s * 1001 * 1001 = 2.6 Mbyte.
-  \end{aligned}
+  N = n*1001*1001 = 2.6 MBytes.
 \end{equation*}
 
-Denote g(s) as the cost from start state to state s, during each iteration, namely the procedure of compute path, the array g need to store all notes which have been explored. 
-Denote h(s) as the estimate cost from state s to goal state, during each iteration, namely the procedure of compute path, the array h need to store all notes which have been explored. 
-Denote search(s) as the explore times of state s, during each iteration,the array s need to store all notes which have been explored. 
-Denote close(s) as the state which have been expanded,during each iteration, the array cost close need to store all states which have been expand.
-Denote open(s) as the state s will be expand in a priority heap sorted by the sum of heuristic value and g(s). The heap open need to store nearly all notes which have been explored. 
-The type of the value of each elements in the data structure above is integer.
-Assume the start state and goal state are in the opposite endpoint in the 
-diagonal line of the map. Then each iteration, the number of expand will near the sum of rows and columns, which rows is the total number of rows in map and columns is the total number of columns. So the number of expand $\approx$ 2000.
-Then 
-$\times$ 1001, then
+Denote $g(s)$ as the cost from start state to state $s$. During each iteration,
+namely the procedure of computing path, the array of $g$ values need store all
+cells which have been explored. 
+
+Denote $h(s)$ as the estimated cost from state $s$ to goal state. During each
+iteration, namely the procedure of computing path, the array of $h$ values need
+store all cells which have been explored. 
+
+Denote $search(s)$ as the explore times of state $s$. During each iteration,
+the array of $search$ values need store all cells which have been explored. 
+
+Denote $close(s)$ as the state which have been expanded. During each iteration,
+the array of $close$ values need store all states which have been expanded.
+
+Denote $open(s)$ as the priority heap that stores states $s$ to be expand
+sorted by the sum of heuristic value and $g(s)$. The heap $open$ need store
+nearly all cells which have been explored. 
+
+The type of the value of each element in the data structure above is integer.
+
+Assume the start state and goal state are in the opposite endpoints in the
+diagonal line of the map. Then for each iteration, the number of expanded cells
+will be close to the sum of $rows$ and $cols$, where $rows$ is the total number
+of rows in map and $cols$ is the total number of columns. So the number of
+expanded cells $\approx$ 2000. Then in the map of size $1001 \times 1001$, 
+
 \begin{equation*}
   \begin{aligned}
    &g = 4 * 2000 * (32 + 34) \approx 65 KByte\\
@@ -57,5 +74,10 @@ $\times$ 1001, then
    &tree = 4 * 2000 * (32 + 34) \approx 65 KByte\\
   \end{aligned}
 \end{equation*}
-so, the total space used: 
-$S_{total} = S +  g + search + close + open + tree \approx 3 MByte$, which is less than 4 Mbyte.Then the project can operate within a memory limit of 4 Mbyte, using a map of size 1001 $\times$ 1001.\\
+
+So, the total memory cost is : 
+
+$$S_{total} = S +  g + search + close + open + tree \approx 3 MBytes < 4MBytes$$
+
+Then the project can operate within a memory limit of 4 Mbyte, using a map of
+size 1001 $\times$ 1001.

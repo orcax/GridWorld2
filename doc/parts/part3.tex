@@ -10,11 +10,11 @@ in an identical way, for example randomly.
 
 \paragraph{Solution}
 
-As the Table \ref{tbl:rfa-rba} shows,the repeat backward a* search expands
-more notes extremely. In average, each map, RBA* take more than 15 times time,
-namely the expanded notes, than RFA*. In addition, in each procedure of compute
-the path, RBA* also expands notes more than 10 times than RFA*. So, The
-efficiency of RBA* is much worse than that of RFA*.
+As Table \ref{tbl:rfa-rba} shows, the Repeated Backward A* expands more cells
+than RFA*. On average, for each map, RBA* takes time (namely the expanded
+cells) 15 times more than RFA*. In addition, in each procedure of computing 
+path, RBA* also expands cells over 10 times more than RFA*. So the efficiency
+of RBA* is much worse than that of RFA*.
 
 \begin{table}[h!]
 \centering
@@ -37,12 +37,13 @@ RBA* & 390.88 & 103.4 & 198.6 & 1.9626 \\
 \label{tbl:rfa-rba}
 \end{table}
 
-The reason of this is that, When computing the path, RFA* always can know which
-cells is blocked, thus it can avoid the cells blocked immediately. In contrast,
-RBA* is search from the goal, and the most cells near goal is unknown. So RBA*
-will find unblocked cells very late, which may result in that RBA* has to
-compute another path in a early note it expanded. So RBA* will cost more time,
-or expands more cells to find the shortest path.
+The reason is that, at the beginning of search, RFA* can use the knowledge from 
+moving to discover which cells are blocked, thus it can immediately avoid
+calculating those possible shortest paths that are blocked by obstacles on the
+way. In contrast, RBA* searches from the goal, and cells near the goal are
+still unknown. So RBA* will find blocked cells very late, which may result in
+the defect that RBA* has to compute another path from an early cell it has expanded. 
+Thus RBA* will cost more time and expand more cells to find the shortest path.
 
 \begin{figure}
   \centering
@@ -60,16 +61,19 @@ or expands more cells to find the shortest path.
   \label{fig:p3-rba}
 \end{figure}
 
-For example, in the Figure \ref{fig:p3-rba}, denote each cell as c(i,j), i,j
-is the row number and column number from 1 to 8. In the figure (a), the agent
-encounter a blocked cell c(1,3), then it has to compute the path again. Using
-RBA* search, it will compute the path from goal. When the compute procedure
-reach c(1,4) along the yellow path,  near the agent, it will find its adjacent
-c(1,3) is blocked. Then it has to turn down to c(2,4). However, when the cell
-c(2,8) expanded, its left cell c(2,7) is added to open-list. And f(c(2,7)) =
-h(c(2,7)) + g(c(2,7)) = 7 + 7 = 14. While f(c(2,4)) = h(c(2,4)) = 4 + 12 =16.
-So, the procedure will chose c(2,7) to expand. Thus there will be a new path in
-this procedure of compute path, like the Figure \ref{fig:p3-rba}.
+For example, in the Figure \ref{fig:p3-rba}, denote each cell as $c(i,j)$,
+where $i,j$ is the row number and column number from 1 to 8. In the Figure
+\ref{fig:p3-rba-1}, the agent encounters a blocked cell $c(1,3)$, then it has
+to compute the path again. Using RBA* search, it will compute the path from
+goal.  When it reaches $c(1,4)$ along the yellow path near the agent, it will
+find its adjacent cell $c(1,3)$ is blocked. Then it has to turn down to
+$c(2,4)$. However, when the cell $c(2,8)$ was expanded, its left cell $c(2,7)$
+was added to $OPEN$ list. Then we have
+$$f(c(2,7)) = h(c(2,7)) + g(c(2,7)) = 6 + 7 = 13$$
+and
+$$f(c(2,4)) = h(c(2,4)) = 3 + 12 =15$$
+So, the procedure will choose $c(2,7)$ to expand and there will be a new path in
+this procedure of computing path, like the Figure \ref{fig:p3-rba}.
 
 \begin{figure}
   \centering
@@ -87,7 +91,7 @@ this procedure of compute path, like the Figure \ref{fig:p3-rba}.
   \label{fig:p3-rfa}
 \end{figure}
 
-In contrast, such as Figure \ref{fig:p3-rfa} shows, when RFA* computes the path,
-it will find c(3,1) is blocked immediately, thus it will avoid to add it to the
-shortest path at once.Then it will not expand extra cells.
+In contrast, as Figure \ref{fig:p3-rfa} shows, when RFA* computes the path, it
+will immediately find $c(3,1)$ is blocked, thus it will avoid adding it to the
+shortest path at once. Then it will not expand extra cells.
 

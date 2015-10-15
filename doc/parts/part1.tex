@@ -17,10 +17,10 @@ that then agent does not know initially which cells are blocked.
 \paragraph{Solution}
 In Figure \ref{fig:figure8}, the start state $A$ is at $(E,2)$ and goal state
 $T$ is at $(E,5)$. Let's denote $A_N$ as the north cell $(D,2)$ of $A$, so
-$g(A_N)=1$ and $h(A_N)=3$, where $h(A_N)$ is calculated as Manhattan distance
+$g(A_N)=1$ and $h(A_N)=4$, where $h(A_N)$ is calculated as Manhattan distance
 from $A_N$ to $T$. Then, we have
 \begin{equation*}
-  f(A_N) = g(A_N) + h(A_N) = 4 
+  f(A_N) = g(A_N) + h(A_N) = 5 
 \end{equation*}
 
 Equivalently, let's denote $A_E$ as the east cell $(E,3)$ of $A$, so
@@ -48,8 +48,8 @@ from above by the number of unblocked cells squared.
 For the first question, a finite gridworld can be seen as an undirected graph,
 which is divided by the blocked cells into several connected components. The
 start cell of agent and the goal must be assigned to any of these connected
-components. In a connected component, every cell is reachable from all other
-cells in the component. This means an agent can uses search algorithms like DFS
+components. In one connected component, every cell is reachable from all other
+cells in the component. This means an agent can use search algorithms like DFS
 or A* to traverse all the cells in the same connected component in finite time.
 If start cell and goal cell lie on the same component, the agent can definitely
 reach the goal, otherwise, it is impossible for agent to reach the goal after

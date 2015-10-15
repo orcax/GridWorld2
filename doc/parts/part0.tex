@@ -1,13 +1,12 @@
 \section{Setup Environment}
 
-We simulate all path finding processes based on the framework of 
-GridWorld\cite{web:gridworld}, an AP case study project from collegeboard
-\footnote{https://www.collegeboard.org/}. It provides graphical user interface 
-based on Java AWT where visual objects can interact and perform customized 
-actions in a two-dimensional grid map. In the next part, we will first illustrate
-original GridWorld framework and our enhancement of displaying colored path.
-This mainly involves the engineering work, so if you want to directly delve 
-into algorithm analysis, please skip it.
+We simulate all path-finding processes based on the framework of
+GridWorld\cite{web:gridworld}, an AP case study project from CollegeBoard
+\footnote{https://www.collegeboard.org/}. It provides graphical user interface
+based on Java AWT where visual objects can interact and perform customized
+actions in a two-dimensional grid map. In the next part, we will first
+illustrate original GridWorld framework and our enhancement of displaying
+colored path. 
 
 \subsection{GridWorld Architecture and Modification}
 
@@ -23,7 +22,7 @@ folder and its structure can be divided into four parts, as shown in Figure
     \label{fig:framework-structure}
   \end{subfigure}
   ~
-  \begin{subfigure}[b]{0.45\textwidth}
+  \begin{subfigure}[b]{0.46\textwidth}
     \includegraphics[width=0.9\textwidth]{project-structure}
     \caption{Project structure}
     \label{fig:project-structure}
@@ -74,6 +73,27 @@ package contains simulation program for experiment and testing. The $util$
 package includes some self-defined data structures to be used in storing 
 intermediate result of algorithm.
 
+\subsection{Data Structures}
+
+In the project, we implement some useful data structures from scratch, like
+binary heap and tree, by referring to CLRS\cite{clrs}. The detailed interfaces
+provided by these data structures are listed in Figure \ref{fig:ds}.
+
+\begin{figure}[ht!]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{binaryheap}
+    \caption{Interfaces for Binary Heap}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{tree}
+    \caption{Interfaces for Tree}
+  \end{subfigure}
+\caption{Interfaces of Data Structures}
+\label{fig:ds}
+\end{figure}
+
 \subsection{How to Run}
 
 Our project is built and packed by Gradle\footnote{http://gradle.org/}, 
@@ -87,19 +107,18 @@ import project. All runnable programs are placed in $test$ package.
 
 \subsection{Maze Generation Algorithm}
 
-In the experiment, we mainly use two kinds of grid map, namely random map with 
-discrete obstacles and random maze with consecutive obstacles. The random map is
-generated according to the assignment requirement, so for each map, there are about
-30\% obstacles and 70\% roads. The start position and the goal position can be 
-placed either randomly or on diagonal corners. Difference between these two ways 
-lies in the absolute distance between start and goal, although, the experimental
-result implies that this initial distance in this type of random map has nearly 
-no influence on the performance of three algorithms. On the other hand, the 
-longer the distance is, the more probable it will lead to unreachable goals, so 
-in this case, we simply collect maps that exist a path between the start position
-and goal position.
+In the experiment, we mainly use two kinds of grid map, namely random map with
+discrete obstacles and random maze with consecutive obstacles. The random map
+is generated according to the assignment requirement, so for each map, there
+are about 30\% obstacles and 70\% roads. The start position and the goal
+position can be placed either randomly or on diagonal corners. Difference
+between these two ways lies in the absolute distance between start and goal,
+although, the experimental result implies that this initial distance in this
+type of random map has nearly no influence on the performance of three
+algorithms. So in this case, we simply collect maps that exist a path between
+the start position and goal position.
 
-Random maze is the other type of maps tested in the experiment. It is generated
+Random maze is the other type of map tested in the experiment. It is generated
 according to DFS by expanding neighbors randomly. The generation process is 
 described as Algorithm \ref{alg:maze-gen}.
 

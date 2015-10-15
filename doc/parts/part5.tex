@@ -53,7 +53,7 @@ almost the same as that for RFA* because both algorithms will place all
 successors into $OPEN$ list. The average number of moves either in each map or
 in each planning for RTAA* is 9.3\% larger than that for RFA*. Compared this
 ratio to that of expanded cells, we can find RTAA* performs better in running
-time of expansion by sacrificing a little bit more moving around.
+time of expansion by the price of moving more steps.
 
 \begin{table}[ht]
 \centering
@@ -77,17 +77,17 @@ RTAA* & 2854.56 & 929.44 & 1078.48 & 2.8758 \\
 \end{table}
 
 The advantage of RTAA* lies in its constant update for heuristic value of
-expanded states. The heuristics of the same state in different plannings are
-monotonically nondecreasing over time, and thus become more
+expanded states. The heuristics of the same state in different planning
+procedures are monotonically nondecreasing over time, and thus become more
 informed\cite{koenig2006real}. Since in every iteration, the algorithm will
-choose the cell with the smallest $f$-value in the $OPEN$ list, the cell 
-with updated larger heuristic, namely larger $f$-value, implies that it will be 
-less probable to be extracted from the $OPEN$ list. Instead, some other cell may be 
+choose the cell with the smallest $f$-value in the $OPEN$ list, the cell with
+updated larger heuristic, namely larger $f$-value, implies that it will be less
+probable to be extracted from the $OPEN$ list. Instead, some other cells may be
 firstly selected by RTAA*, which is selected later by RFA*. On the other hand,
-the heuristic value in RTAA* can be regarded composed of two parts. The first 
-part is calculated according to from gained knowledge in previous planning,
-and the second the part is the ordinary estimate goal distance, like Manhattan
-distance in the case. The first part can benefit RTAA* from selecting a more 
+the heuristic value in RTAA* can be regarded composed of two parts. The first
+part is calculated according to from gained knowledge in previous planning, and
+the second the part is the ordinary estimate goal distance, like Manhattan
+distance in the case. The first part can benefit RTAA* from selecting a more
 informed cell from $OPEN$ list, so that less nodes are needed to be expanded,
 whereas RFA* expands more redundant cells during planning.
 

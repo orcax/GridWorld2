@@ -1,15 +1,16 @@
 \BOOKMARK [1][-]{section.0}{Setup Environment}{}% 1
 \BOOKMARK [2][-]{subsection.0.1}{GridWorld Architecture and Modification}{section.0}% 2
-\BOOKMARK [2][-]{subsection.0.2}{How to Run}{section.0}% 3
-\BOOKMARK [2][-]{subsection.0.3}{Maze Generation Algorithm}{section.0}% 4
-\BOOKMARK [1][-]{section.1}{Understanding the Methods}{}% 5
-\BOOKMARK [2][-]{subsection.1.1}{Problem A}{section.1}% 6
-\BOOKMARK [2][-]{subsection.1.2}{Problem B}{section.1}% 7
-\BOOKMARK [1][-]{section.2}{The Effects of Ties}{}% 8
-\BOOKMARK [1][-]{section.3}{Forward vs. Backward}{}% 9
-\BOOKMARK [1][-]{section.4}{Heuristics in the Adaptive A*}{}% 10
-\BOOKMARK [1][-]{section.5}{Heuristics in the Adaptive A*}{}% 11
-\BOOKMARK [1][-]{section.6}{Memory Issues}{}% 12
-\BOOKMARK [1][-]{appendix.A}{Experimental Result in Part 2}{}% 13
-\BOOKMARK [1][-]{appendix.B}{Experimental Result in Part 3}{}% 14
-\BOOKMARK [1][-]{appendix.C}{Experimental Result in Part 5}{}% 15
+\BOOKMARK [2][-]{subsection.0.2}{Data Structures}{section.0}% 3
+\BOOKMARK [2][-]{subsection.0.3}{How to Run}{section.0}% 4
+\BOOKMARK [2][-]{subsection.0.4}{Maze Generation Algorithm}{section.0}% 5
+\BOOKMARK [1][-]{section.1}{Understanding the Methods}{}% 6
+\BOOKMARK [2][-]{subsection.1.1}{Problem A}{section.1}% 7
+\BOOKMARK [2][-]{subsection.1.2}{Problem B}{section.1}% 8
+\BOOKMARK [1][-]{section.2}{The Effects of Ties}{}% 9
+\BOOKMARK [1][-]{section.3}{Forward vs. Backward}{}% 10
+\BOOKMARK [1][-]{section.4}{Heuristics in the Adaptive A*}{}% 11
+\BOOKMARK [1][-]{section.5}{Heuristics in the Adaptive A*}{}% 12
+\BOOKMARK [1][-]{section.6}{Memory Issues}{}% 13
+\BOOKMARK [1][-]{appendix.A}{Experimental Result in Part 2}{}% 14
+\BOOKMARK [1][-]{appendix.B}{Experimental Result in Part 3}{}% 15
+\BOOKMARK [1][-]{appendix.C}{Experimental Result in Part 5}{}% 16

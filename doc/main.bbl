@@ -7,6 +7,11 @@ CollegeBoard.
   \url{http://apcentral.collegeboard.com/apc/public/courses/teachers_corner/151155.html}.
 \newblock [Online; accessed 2-October-2015].
 
+\bibitem{clrs}
+Thomas~H. Cormen, Charles~E. Leiserson, Ronald~L. Rivest, and Clifford Stein.
+\newblock {\em Introduction to Algorithms, Third Edition}.
+\newblock The MIT Press, 3rd edition, 2009.
+
 \bibitem{koenig2006real}
 Sven Koenig and Maxim Likhachev.
 \newblock Real-time adaptive a*.
