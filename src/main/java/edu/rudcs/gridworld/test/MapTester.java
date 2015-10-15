@@ -10,7 +10,7 @@ public class MapTester {
         Generator gen = null;
         gen = new MapGenerator(101, 101);
         gen.mkdir();
-        gen.generateMaps(100);
+        gen.generateMaps(50);
         gen = new DfsMazeGenerator(101, 101);
         gen.mkdir();
         gen.generateMaps(50);
