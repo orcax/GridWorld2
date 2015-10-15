@@ -1,7 +1,6 @@
 package edu.rudcs.gridworld.test;
 
 import edu.rudcs.gridworld.agent.AdaptiveAstarAgent;
-import edu.rudcs.gridworld.agent.Agent;
 import edu.rudcs.gridworld.agent.RawAdaptiveAgent;
 import edu.rudcs.gridworld.agent.RawRepeatBackwardAgent;
 import edu.rudcs.gridworld.agent.RawRepeatForwardAgent;
@@ -12,7 +11,7 @@ import edu.rudcs.gridworld.map.RepeatAstarSearchMap;
 
 public class AssignmentTester {
     
-	public int MAP_COUNT = 100;
+	public int MAP_COUNT = 50;
 	public  static String MAP_MAZE = "maps/randmazes/";
 	public  static String MAP_RAND = "maps/randmaps/";
 	
@@ -81,19 +80,15 @@ public class AssignmentTester {
 
     public static void main(String[] args) {
         AssignmentTester at = new AssignmentTester();
-        at.testRepeatAstar("forward",MAP_MAZE);
-        at.testRepeatAstar("backward",MAP_MAZE);
-        at.testRepeatAstar("adaptive",MAP_MAZE);
-        at.testRepeatAstar("Rawforward",MAP_MAZE);
-        
         at.testRepeatAstar("forward",MAP_RAND);
         at.testRepeatAstar("backward",MAP_RAND);
         at.testRepeatAstar("adaptive",MAP_RAND);
         at.testRepeatAstar("Rawforward",MAP_RAND);
-        //at.testRepeatAstar("Rawbackward");
-        //at.testRepeatAstar("Rawadaptive");
-       // at.testRepeatBackwardAstar();
-      //  at.testAdaptiveAstar();
+
+        at.testRepeatAstar("forward",MAP_MAZE);
+        at.testRepeatAstar("backward",MAP_MAZE);
+        at.testRepeatAstar("adaptive",MAP_MAZE);
+        at.testRepeatAstar("Rawforward",MAP_MAZE);
     }
 
 }

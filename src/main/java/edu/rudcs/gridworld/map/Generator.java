@@ -1,5 +1,6 @@
 package edu.rudcs.gridworld.map;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -23,7 +24,7 @@ public abstract class Generator {
     protected String getMapName() {
         return String.format("%d.%s", ++count, SUFFIX);
     }
-
+    
     protected void saveAsFile(char[][] map) {
         StringBuffer sb = new StringBuffer(rows + " " + cols + "\n");
         for (int i = 0; i < rows; i++) {
@@ -46,6 +47,13 @@ public abstract class Generator {
             if (pw != null) {
                 pw.close();
             }
+        }
+    }
+    
+    public void mkdir() {
+        File dir = new File(path);
+        if(!dir.exists() || !dir.isDirectory()) {
+            dir.mkdir();
         }
     }
 

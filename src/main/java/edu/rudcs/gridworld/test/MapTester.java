@@ -9,8 +9,10 @@ public class MapTester {
     public static void main(String[] args) {
         Generator gen = null;
         gen = new MapGenerator(101, 101);
-        gen.generateMaps(50);
+        gen.mkdir();
+        gen.generateMaps(100);
         gen = new DfsMazeGenerator(101, 101);
+        gen.mkdir();
         gen.generateMaps(50);
     }
 }

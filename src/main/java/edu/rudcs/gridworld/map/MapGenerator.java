@@ -1,5 +1,6 @@
 package edu.rudcs.gridworld.map;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class MapGenerator extends Generator {
         this.cols = cols;
         this.rows = rows;
     }
-
+    
     private int hash(int row, int col) {
         return row * cols + col;
     }
